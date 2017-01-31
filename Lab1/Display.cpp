@@ -19,11 +19,14 @@ void Display::returnError(std::string errorString)
 	cout << errorString;
 	cout << "press any key to quit...";
 	
-	//checks keystroke (fix)
-	if (SDL_KEYDOWN)
-	{
-		SDL_Quit();
+	SDL_Event event;
 
+	while (SDL_PollEvent(&event))
+	{
+		if (event.type == SDLK_ESCAPE)
+		{
+			SDL_Quit();
+		}
 	}
 }
 

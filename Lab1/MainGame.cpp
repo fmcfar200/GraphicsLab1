@@ -44,15 +44,18 @@ void MainGame::processInput()
 
 	while (SDL_PollEvent(&event))
 	{
-		///
+		if (event.type == SDLK_ESCAPE)
+		{
+			SDL_Quit();
+		}
 	}
-
 	switch (event.type)
 	{
 	case SDL_QUIT:
 		GameState::EXIT;
 		break;
 	}
+	
 }
 
 void MainGame::drawGame()
@@ -72,6 +75,6 @@ void MainGame::drawGame()
 	glEnd();
 
 	// SWAP BUFFER HERE
-	//SDL_GL_SwapWindow();
+	_gameDisplay.swapBuffer();
 }
 
