@@ -2,5 +2,5 @@
   main.cpp
   Display.cpp
   Generating Code...
-LINK : fatal error LNK1104: cannot open file 'SDL2.lib'
-C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppCommon.targets(638,5): error MSB6006: "link.exe" exited with code 1104.
+  Lab1.vcxproj -> C:\Users\Fraser\Documents\GitHub\GraphicsLab1\Debug\Lab1.exe
+  Lab1.vcxproj -> C:\Users\Fraser\Documents\GitHub\GraphicsLab1\Debug\Lab1.pdb (Full PDB)
