@@ -6,8 +6,8 @@
 Shader::Shader(const std::string& filename)
 {
 	program = glCreateProgram();
-	shaders[0] = CreateShader(LoadShader("C:\\Users\fmcfar200\Desktop\GitHub\GraphicsLab1\res\shader.vert"), GL_VERTEX_SHADER);
-	shaders[1] = CreateShader(LoadShader("C:\\Users\fmcfar200\Desktop\GitHub\GraphicsLab1\res\shader.frag"), GL_FRAGMENT_SHADER);
+	shaders[0] = CreateShader(LoadShader("C:\\Users\\fmcfar200\\Desktop\\GitHub\\GraphicsLab1\\res\\shader.vert"), GL_VERTEX_SHADER);
+	shaders[1] = CreateShader(LoadShader("C:\\Users\\fmcfar200\\Desktop\\GitHub\\GraphicsLab1\\res\\shader.frag"), GL_FRAGMENT_SHADER);
 
 	for (int i = 0; i < NUM_SHADERS; i++)
 	{
