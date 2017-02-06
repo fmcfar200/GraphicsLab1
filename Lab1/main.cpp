@@ -1,8 +1,7 @@
-#include <SDL/SDL.h>
 #include <iostream>
 #include "MainGame.h"
 
-int main(int argc, char** argv) //arguements used to call SDL main
+int main(int argc, char** argv) //argument used to call SDL main
 {
 	MainGame mainGame;
 	mainGame.run();

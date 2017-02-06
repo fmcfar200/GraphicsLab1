@@ -1,9 +1,10 @@
 #pragma once
+
 #include <SDL\SDL.h>
 #include <GL/glew.h>
-#include "Display.h"
+#include "Display.h" 
 
-enum class GameState{PLAY,EXIT};
+enum class GameState{PLAY, EXIT};
 
 class MainGame
 {

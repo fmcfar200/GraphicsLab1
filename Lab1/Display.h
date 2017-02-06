@@ -5,6 +5,7 @@
 #include <string>
 using namespace std;
 
+
 class Display
 {
 public:
@@ -14,11 +15,11 @@ public:
 	void swapBuffer();
 
 private:
+
 	void returnError(std::string errorString);
 
 	SDL_Window* _window; //holds pointer to out window
 	int _screenWidth;
-	int _screenHieght;
-
+	int _screenHeight;
 };
 

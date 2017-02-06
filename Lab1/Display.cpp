@@ -3,12 +3,10 @@
 
 Display::Display()
 {
-	_window = nullptr;
+	_window = nullptr; //initialise to generate null access violation for debugging. 
 	_screenWidth = 1024;
-	_screenHieght = 768;
-
+	_screenHeight = 768; 
 }
-
 
 Display::~Display()
 {
@@ -16,46 +14,45 @@ Display::~Display()
 
 void Display::returnError(std::string errorString)
 {
-	cout << errorString;
-	cout << "press any key to quit...";
-	
-	SDL_Event event;
-
-	while (SDL_PollEvent(&event))
-	{
-		if (event.type == SDLK_ESCAPE)
-		{
-			SDL_Quit();
-		}
-	}
+	std::cout << errorString << std::endl;
+	std::cout << "press any  key to quit...";
+	int in;
+	std::cin >> in;
+	SDL_Quit();
 }
 
 void Display::swapBuffer()
 {
-	SDL_GL_SwapWindow(_window);
+	SDL_GL_SwapWindow(_window); //swap buffers
 }
 
 void Display::initDisplay()
 {
-	SDL_Init(SDL_INIT_EVERYTHING); //*
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-	_window = SDL_CreateWindow("Game Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, _screenWidth, _screenHieght, SDL_WINDOW_OPENGL);
+	SDL_Init(SDL_INIT_EVERYTHING); //initalise everything
 
-	SDL_GLContext glContext = SDL_GL_CreateContext(_window);
+	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8); //Min no of bits used to diplay colour
+	SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
+	SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1); // set up double buffer   
 
-	GLenum error = glewInit();
+	_window = SDL_CreateWindow("Game Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, _screenWidth, _screenHeight, SDL_WINDOW_OPENGL); // create window
 
 	if (_window == nullptr)
 	{
-		returnError("Cannot init due to window not existing!");
+		returnError("window failed to create");
 	}
+
+	SDL_GLContext glContext = SDL_GL_CreateContext(_window);
+
 	if (glContext == nullptr)
 	{
-		returnError("Cannot init due to glcontext not existing!");
+		returnError("SDL_GL context failed to create");
 	}
+
+	GLenum error = glewInit();
 	if (error != GLEW_OK)
 	{
-		returnError("Cannot init due to glew error!");
+		returnError("GLEW failed to initialise");
 	}
 
 	glClearColor(0.0f, 1.0f, 1.0f, 1.0f);
