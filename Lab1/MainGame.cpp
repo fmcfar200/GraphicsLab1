@@ -53,6 +53,7 @@ void MainGame::drawGame()
 	_gameDisplay.ClearDisplay();
 
 
+
 	// old code for testing only 
 	glEnableClientState(GL_COLOR_ARRAY); 
 	glBegin(GL_TRIANGLES);
