@@ -62,8 +62,19 @@ void MainGame::drawGame()
 
 	Mesh mesh(vertices, sizeof(vertices)/ sizeof(vertices[0]));
 	Shader shader("C:\\Users\\fmcfar200\\Desktop\\GitHub\\GraphicsLab1\\res");
+	Texture texture("C:\\Users\\fmcfar200\\Desktop\\GitHub\\GraphicsLab1\\res\\bricks.jpg");
+	Transform transform;
+	transform.SetPos(glm::vec3(sinf(counter), 0.0, 0.0));
+	transform.SetRot(glm::vec3(0.0, 0.0, counter * 5));
+	transform.SetScale(glm::vec3(sinf(counter), sinf(counter), sinf(counter)));
+
 	shader.Bind();
+	shader.Update(transform);
+	texture.Bind(0);
 	mesh.Draw();
+	
+	counter = counter + 0.01f;
+	
 
 	// old code for testing only 
 	glEnableClientState(GL_COLOR_ARRAY); 
