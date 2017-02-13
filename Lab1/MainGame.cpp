@@ -54,9 +54,10 @@ void MainGame::drawGame()
 
 	Vertex vertices[]
 	{
-		glm::vec3(-0.5f, -0.5f, 0.0f),
-		glm::vec3(0, 0.5f, 0.0f),
-		glm::vec3(0.5, -0.5f, 0.0f)
+		Vertex(glm::vec3(-0.5, -0.5, 0), glm::vec2(0.0, 0.0)),
+			Vertex(glm::vec3(0, 0.5, 0), glm::vec2(0.5, 1.0)),
+			Vertex(glm::vec3(0.5, -0.5, 0), glm::vec2(1.0, 0.0))
+
 	};
 
 	Mesh mesh(vertices, sizeof(vertices)/ sizeof(vertices[0]));
