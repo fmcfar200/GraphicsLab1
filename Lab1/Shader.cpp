@@ -2,60 +2,71 @@
 #include <iostream>
 #include <fstream>
 
-
 Shader::Shader(const std::string& filename)
 {
-	program = glCreateProgram();
-	shaders[0] = CreateShader(LoadShader("C:\\Users\\fmcfar200\\Desktop\\GitHub\\GraphicsLab1\\res\\shader.vert"), GL_VERTEX_SHADER);
-	shaders[1] = CreateShader(LoadShader("C:\\Users\\fmcfar200\\Desktop\\GitHub\\GraphicsLab1\\res\\shader.frag"), GL_FRAGMENT_SHADER);
+	program = glCreateProgram(); // create shader program (openGL saves as ref number)
+	shaders[0] = CreateShader(LoadShader("R:\\Lab3\\res\\shader.vert"), GL_VERTEX_SHADER); // create vertex shader
+	shaders[1] = CreateShader(LoadShader("R:\\Lab3\\res\\shader.frag"), GL_FRAGMENT_SHADER); // create fragment shader
 
-	for (int i = 0; i < NUM_SHADERS; i++)
+	for (unsigned int i = 0; i < NUM_SHADERS; i++)
 	{
-		glAttachShader(program, shaders[i]);
+		glAttachShader(program, shaders[i]); //add all our shaders to the shader program "shaders" 
 	}
 
-	glBindAttribLocation(program, 0, "position");
+	glBindAttribLocation(program, 0, "position"); // associate attribute variable with our shader program attribute (in this case attribute vec3 position;)
 	glBindAttribLocation(program, 1, "texCoord");
 
-	glLinkProgram(program); //creates executables that will run on the gpu shader
-	CheckShaderError(program, GL_LINK_STATUS, true, "Error: Shader program linking failed"); //checks for errors
+	glLinkProgram(program); //create executables that will run on the GPU shaders
+	CheckShaderError(program, GL_LINK_STATUS, true, "Error: Shader program linking failed"); // cheack for error
 
-	glValidateProgram(program); //checks entire program is valid
-	CheckShaderError(program, GL_VALIDATE_STATUS, true, "Error: Shader program is not valid");
+	glValidateProgram(program); //check the entire program is valid
+	CheckShaderError(program, GL_VALIDATE_STATUS, true, "Error: Shader program not valid");
 
-	uniforms[TRANSFORM_U] = glGetUniformLocation(program, "transform");
-
-
+	uniforms[TRANSFORM_U] = glGetUniformLocation(program, "transform"); // associate with the location of uniform variable within a program
 }
 
 
 Shader::~Shader()
 {
-	for (int i = 0; i < NUM_SHADERS; i++)
+	for (unsigned int i = 0; i < NUM_SHADERS; i++)
 	{
-		glDetachShader(program, shaders[i]); //detache shader from prog
-		glDeleteShader(shaders[i]);
-
-		
+		glDetachShader(program, shaders[i]); //detach shader from program
+		glDeleteShader(shaders[i]); //delete the sahders
 	}
-
-	glDeleteProgram(program);
-
+	glDeleteProgram(program); // delete the program
 }
 
 void Shader::Bind()
 {
-	glUseProgram(program);
-
+	glUseProgram(program); //installs the program object specified by program as part of rendering state
 }
 
-void Shader::Update(const Transform& transform)
+void Shader::Update(const Transform& transform, const Camera& camera)
 {
-	glm::mat4 model = transform.GetModel();
-	glUniformMatrix4fv(uniforms[TRANSFORM_U], 1, GLU_FALSE, &model[0][0]);
+	glm::mat4 mvp = camera.GetViewProjection() * transform.GetModel();
+	glUniformMatrix4fv(uniforms[TRANSFORM_U], 1, GLU_FALSE, &mvp[0][0]);
 }
 
 
+GLuint Shader::CreateShader(const std::string& text, unsigned int type)
+{
+	GLuint shader = glCreateShader(type); //create shader based on specified type
+
+	if (shader == 0) //if == 0 shader no created
+		std::cerr << "Error type creation failed " << type << std::endl;
+
+	const GLchar* stringSource[1]; //convert strings into list of c-strings
+	stringSource[0] = text.c_str();
+	GLint lengths[1];
+	lengths[0] = text.length();
+
+	glShaderSource(shader, 1, stringSource, lengths); //send source code to opengl
+	glCompileShader(shader); //get open gl to compile shader code
+
+	CheckShaderError(shader, GL_COMPILE_STATUS, false, "Error compiling shader!"); //check for compile error
+
+	return shader;
+}
 
 std::string Shader::LoadShader(const std::string& fileName)
 {
@@ -81,7 +92,6 @@ std::string Shader::LoadShader(const std::string& fileName)
 	return output;
 }
 
-
 void Shader::CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage)
 {
 	GLint success = 0;
@@ -101,24 +111,4 @@ void Shader::CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const 
 
 		std::cerr << errorMessage << ": '" << error << "'" << std::endl;
 	}
-}
-
-GLuint Shader::CreateShader(const std::string& text, unsigned int type)
-{
-	GLuint shader = glCreateShader(type); //create shader based on specified type
-
-	if (shader == 0) //if == 0 shader no created
-		std::cerr << "Error type creation failed " << type << std::endl;
-
-	const GLchar* stringSource[1]; //convert strings into list of c-strings
-	stringSource[0] = text.c_str();
-	GLint lengths[1];
-	lengths[0] = text.length();
-
-	glShaderSource(shader, 1, stringSource, lengths); //send source code to opengl
-	glCompileShader(shader); //get open gl to compile shader code
-
-	CheckShaderError(shader, GL_COMPILE_STATUS, false, "Error compiling shader!"); //check for compile error
-
-	return shader;
 }
