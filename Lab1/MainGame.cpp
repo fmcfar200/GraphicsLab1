@@ -69,9 +69,9 @@ void MainGame::drawGame()
 {
 	_gameDisplay.ClearDisplay(0.0f, 0.0f, 0.0f, 1.0f);
 
-	Shader shader("C:\\Users\fmcfar200\Desktop\GitHub\GraphicsLab1\res"); //new shader
+	Shader shader("C:\\Users\fmcfar200\Desktop\GitHub\GraphicsLab1\res\shader.frag"); //new shader
 	Texture texture("C:\\Users\fmcfar200\Desktop\GitHub\GraphicsLab1\res\bricks.jpg"); //load texture
-	Texture texture1("G:\\Lab3\\res\\water.jpg"); //load texture
+	Texture texture1("C:\\Users\fmcfar200\Desktop\GitHub\GraphicsLab1\res\bricks.jpg"); //load texture
 
 	transform.SetPos(glm::vec3(sinf(counter), 0.0, 0.0));
 	transform.SetRot(glm::vec3(0.0, 0.0, counter * 5));

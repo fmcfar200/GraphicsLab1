@@ -6,7 +6,10 @@
 struct Camera
 {
 public:
-	Camera();
+	Camera()
+	{
+
+	};
 	void initCamera(const glm::vec3& pos, float fov, float aspect, float nearClip, float farClip)
 	{
 		this->pos = pos;
