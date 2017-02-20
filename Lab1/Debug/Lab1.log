@@ -1,19 +1,16 @@
-﻿Build started 20/02/2017 11:44:36.
+﻿Build started 20/02/2017 12:07:21.
      1>Project "C:\Users\fmcfar200\Desktop\GitHub\GraphicsLab1\Lab1\Lab1.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /D _MBCS /D _CRT_SECURE_NO_WARNINGS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\..\Downloads\obj_loader.cpp Display.cpp main.cpp MainGame.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /D _MBCS /D _CRT_SECURE_NO_WARNINGS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt MainGame.cpp Mesh.cpp main.cpp
+         Mesh.cpp
          MainGame.cpp
      1>c:\users\fmcfar200\desktop\github\graphicslab1\lab1\maingame.cpp(53): error C2660: 'Display::ClearDisplay' : function does not take 0 arguments
-         Display.cpp
-     1>c:\users\fmcfar200\desktop\github\graphicslab1\lab1\display.cpp(50): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-         obj_loader.cpp
-     1>c:\users\fmcfar200\downloads\obj_loader.cpp(378): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\fmcfar200\desktop\github\graphicslab1\lab1\maingame.cpp(63): error C2661: 'Mesh::Mesh' : no overloaded function takes 2 arguments
          Generating Code...
-         Compiling...
+         Skipping... (no relevant changes detected)
          main.cpp
-         Generating Code...
      1>Done Building Project "C:\Users\fmcfar200\Desktop\GitHub\GraphicsLab1\Lab1\Lab1.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:04.50
+Time Elapsed 00:00:01.58
