@@ -1,3 +1,9 @@
 ﻿  Shader.cpp
+  Mesh.cpp
+  main.cpp
+  Game.cpp
+  Display.cpp
+  Generating Code...
+  stb_image.c
   CourseworkStarter.vcxproj -> C:\Users\Fraser\Documents\Uni\Year3\B\Graphics\GraphicsLabs\CourseworkStarter\Debug\CourseworkStarter.exe
   CourseworkStarter.vcxproj -> C:\Users\Fraser\Documents\Uni\Year3\B\Graphics\GraphicsLabs\CourseworkStarter\Debug\CourseworkStarter.pdb (Full PDB)
