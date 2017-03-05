@@ -55,9 +55,8 @@ void Game::gLoop()
 void Game::draw()
 {
 
-	glClearDepth(1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+	
+	gameDisplay.ClearDisplay();
 
 	glEnableClientState(GL_COLOR_ARRAY);
 	glBegin(GL_TRIANGLES);

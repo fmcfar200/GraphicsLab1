@@ -12,11 +12,13 @@ public:
 	~Display();
 	void initialiseDisplay();
 	void swapBuffer();
+	void ClearDisplay();
 
 private:
 
 	void returnError(std::string eString);
 	SDL_Window* window; //holds pointer window
+	SDL_GLContext context;
 	int screenW;
 	int screenH;
 

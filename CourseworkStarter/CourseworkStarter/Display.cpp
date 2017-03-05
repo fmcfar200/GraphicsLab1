@@ -13,6 +13,9 @@ Display::Display()
 
 Display::~Display()
 {
+	SDL_GL_DeleteContext(context);
+	SDL_DestroyWindow(window);
+	SDL_Quit();
 }
 
 void Display::initialiseDisplay()
@@ -22,7 +25,7 @@ void Display::initialiseDisplay()
 
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenW, screenH, SDL_WINDOW_OPENGL);
-	SDL_GLContext context = SDL_GL_CreateContext(window); //create gl context
+	context = SDL_GL_CreateContext(window); //create gl context
 
 	GLenum error = glewInit();// init glew
 
@@ -47,6 +50,12 @@ void Display::initialiseDisplay()
 void Display::swapBuffer()
 {
 	SDL_GL_SwapWindow(window);
+}
+
+void Display::ClearDisplay()
+{
+	glClearDepth(1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void Display::returnError(std::string eString)
