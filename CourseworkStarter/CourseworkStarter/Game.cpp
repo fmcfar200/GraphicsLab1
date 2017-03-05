@@ -58,14 +58,19 @@ void Game::draw()
 	
 	gameDisplay.ClearDisplay();
 
+	Vertex vertices[]
+	{
+		glm::vec3(-0.5f, -0.5f, 0.0f),
+		glm::vec3(0, 0.5f, 0.0f),
+		glm::vec3(0.5, -0.5f, 0.0f)
+	}; //array of verts
+
+	Mesh mesh(vertices, sizeof(vertices) / sizeof(vertices[0])); //mesh object
+	Shader shader("C:\\Users\\Fraser\\Documents\\Uni\\Year3\\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\"); //shader obj
+	shader.BindShader();//bind shader
+	mesh.Draw();//draws mesh
+
 	glEnableClientState(GL_COLOR_ARRAY);
-	glBegin(GL_TRIANGLES);
-	glColor3f(1.0f, 0.0f, 0.0f);
-
-
-	glVertex2f(0, 0);
-	glVertex2f(0, 500);
-	glVertex2f(500, 500);
 	glEnd();
 
 
