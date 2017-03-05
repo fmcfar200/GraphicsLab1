@@ -17,7 +17,9 @@ Display::~Display()
 
 void Display::initialiseDisplay()
 {
-	SDL_Init(SDL_INIT_EVERYTHING);
+	SDL_Init(SDL_INIT_EVERYTHING); //init everything
+
+
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenW, screenH, SDL_WINDOW_OPENGL);
 	SDL_GLContext context = SDL_GL_CreateContext(window); //create gl context
@@ -26,17 +28,17 @@ void Display::initialiseDisplay()
 
 	if (window == nullptr)
 	{
-		//return error
+		returnError("window failed to create");
 	}
 
 	if (context == nullptr)
 	{
-		//return error
+		returnError("SDL_GL context failed to create");
 	}
 
 	if (error != GLEW_OK)
 	{
-		//return errpr
+		returnError("GLEW failed to initialise");
 	}
 
 	glClearColor(0.0f, 1.0f, 1.0f, 1.0f); //sets background colour
@@ -49,4 +51,9 @@ void Display::swapBuffer()
 
 void Display::returnError(std::string eString)
 {
+	std::cout << eString << std::endl;
+	std::cout << "press any  key to quit...";
+	int in;
+	std::cin >> in;
+	SDL_Quit();
 }
