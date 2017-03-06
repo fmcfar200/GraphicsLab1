@@ -1,7 +1,7 @@
 #pragma once
 #include <SDL\SDL.h>
 #include <GL/glew.h>
-#include "Display.h" 
+#include "Window.h" 
 #include "Mesh.h"
 #include "Shader.h"
 #include "Texture.h"
@@ -21,7 +21,7 @@ private:
 	void gLoop();
 	void draw();
 
-	Display gameDisplay;
+	Window gameDisplay;
 	State gameState;
 
 	float count = 0;

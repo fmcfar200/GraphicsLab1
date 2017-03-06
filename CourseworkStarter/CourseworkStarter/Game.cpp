@@ -7,7 +7,7 @@
 Game::Game()
 {
 	gameState = State::PLAY;
-	Display* gameDisp = new Display();
+	Window* gameDisp = new Window();
 
 }
 
