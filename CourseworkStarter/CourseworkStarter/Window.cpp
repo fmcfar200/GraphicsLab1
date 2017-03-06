@@ -5,8 +5,8 @@
 Window::Window()
 {
 	window = nullptr;
-	screenH = 768;
-	screenW = 1024;
+	screenH = 768.0f;
+	screenW = 1024.0f;
 
 }
 
@@ -24,8 +24,12 @@ void Window::initialiseDisplay()
 
 
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-	window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenW, screenH, SDL_WINDOW_OPENGL);
+	window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, (int)screenW, (int)screenH, SDL_WINDOW_OPENGL);
 	context = SDL_GL_CreateContext(window); //create gl context
+
+	glEnable(GL_DEPTH_TEST); //enable z-buffering 
+	glEnable(GL_CULL_FACE); //dont draw faces that are not pointing at the camera
+
 
 	GLenum error = glewInit();// init glew
 
@@ -52,10 +56,20 @@ void Window::swapBuffer()
 	SDL_GL_SwapWindow(window);
 }
 
-void Window::ClearDisplay()
+void Window::ClearDisplay(float r, float g, float b, float a)
 {
-	glClearDepth(1.0f);
+	glClearColor(r, g, b, a);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
+float Window::GetWidth()
+{
+	return screenW;
+}
+
+float Window::GetHeight()
+{
+	return screenH;
 }
 
 void Window::returnError(std::string eString)

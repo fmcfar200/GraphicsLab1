@@ -3,6 +3,7 @@
 #include <GL\glew.h>
 #include <string>
 #include <vector>
+#include "obj_loader.h"
 
 class Vertex
 {
@@ -11,11 +12,17 @@ public:
 	{
 		this->position = pos;
 		this->textureCoord = textureCoord;
+		this->norm = norm;
 
 	}
 
 	glm::vec3 position;
 	glm::vec2 textureCoord;
+	glm::vec3 norm;
+
+	glm::vec3* GetPosition() { return &position; }
+	glm::vec2* GetTextureCoord() { return &textureCoord; }
+	glm::vec3* GetNorm() { return &norm; }
 
 protected:
 private:
@@ -26,9 +33,14 @@ private:
 class Mesh
 {
 public:
-	Mesh(Vertex* vertices, unsigned int numVertices);
+	Mesh();
 	~Mesh();
-	void Draw();
+	void DrawMesh();
+
+	void initialise(Vertex* vertices, unsigned int numVertices, unsigned int* indices, unsigned int numIndices);
+	void loadModelFromFile(const std::string& filename);
+	void initialiseModel(const IndexedModel& model);
+
 
 private:
 
@@ -36,6 +48,8 @@ private:
 	{
 		POSITION_VERTEXBUFFER,
 		TEXTURECOORDS_VB,
+		NORMAL_VB,
+		INDEX_VB,
 		NUM_BUFFER
 	};
 

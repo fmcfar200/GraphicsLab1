@@ -111,9 +111,9 @@ GLuint Shader::CreateShader(const std::string & text, unsigned int type)
 	return shader;
 }
 
-void Shader::Update(const Transform & trans)
+void Shader::Update(const Transform & trans, const View & camera)
 {
-	glm::mat4 modelMat = trans.GetModel();
+	glm::mat4 modelMat = camera.GetViewProjectionMatrix() * trans.GetModel();
 	glUniformMatrix4fv(uniforms[TRANSFORM_UNIF], 1, GLU_FALSE, &modelMat[0][0]);
 
 }

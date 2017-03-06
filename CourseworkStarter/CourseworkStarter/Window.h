@@ -12,15 +12,19 @@ public:
 	~Window();
 	void initialiseDisplay();
 	void swapBuffer();
-	void ClearDisplay();
+	void ClearDisplay(float r, float g, float b, float a);
+
+	float GetWidth();
+	float GetHeight();
+
 
 private:
 
 	void returnError(std::string eString);
 	SDL_Window* window; //holds pointer window
 	SDL_GLContext context;
-	int screenW;
-	int screenH;
+	float screenW;
+	float screenH;
 
 
 };

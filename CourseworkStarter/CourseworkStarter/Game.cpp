@@ -2,12 +2,17 @@
 #include <iostream>
 #include <string>
 
-
+unsigned int inds[] = { 0, 1, 2 };
+Transform trans;
 
 Game::Game()
 {
 	gameState = State::PLAY;
 	Window* gameDisp = new Window();
+
+	Mesh* mesh();
+
+	View* cam();
 
 }
 
@@ -18,14 +23,16 @@ Game::~Game()
 
 void Game::RunGame()
 {
-	initSystems();
+	initialiseSystems();
 	gLoop();
 
 }
 
-void Game::initSystems()
+void Game::initialiseSystems()
 {
 	gameDisplay.initialiseDisplay();
+	mesh1.loadModelFromFile("C:\\Users\\Fraser\\Documents\\Uni\\Year3\\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\monkey3.obj");
+	camera.initialiseCamera(glm::vec3(0, 0, -5), 70.0f, (float)gameDisplay.GetWidth() / gameDisplay.GetHeight(), 0.01f, 1000.0);
 }
 
 void Game::updateInput()
@@ -56,29 +63,19 @@ void Game::draw()
 {
 
 	
-	gameDisplay.ClearDisplay();
-
-	 //array of verts
-	Vertex vertices[] = { Vertex(glm::vec3(-0.5, -0.5, 0), glm::vec2(0.0, 0.0)),
-		Vertex(glm::vec3(0, 0.5, 0), glm::vec2(0.5, 1.0)),
-		Vertex(glm::vec3(0.5, -0.5, 0), glm::vec2(1.0, 0.0)) };
-
-
-	Mesh mesh(vertices, sizeof(vertices) / sizeof(vertices[0])); //mesh object
+	gameDisplay.ClearDisplay(0.0f,0.0f,0.0f,1.0f);
 	
 	Shader shader("C:\\Users\\Fraser\\Documents\\Uni\\Year3\\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\"); //shader obj
 	Texture texture("C:\\Users\\Fraser\\Documents\\Uni\\Year3\\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\bricks.jpg");
 
-	Transform transform;
-	transform.SetPos(glm::vec3(sinf(count), 0.0, 0.0));
-	transform.SetRot(glm::vec3(0.0, 0.0, count * 5));
-	transform.SetScale(glm::vec3(sinf(count), sinf(count), sinf(count)));
+	trans.SetPos(glm::vec3(sinf(count), 0.0, 0.0));
+	trans.SetRot(glm::vec3(0.0, 0.0, count * 5));
+	trans.SetScale(glm::vec3(sinf(count), sinf(count), sinf(count)));
 
 	shader.BindShader();//bind shader
-	shader.Update(transform);
+	shader.Update(trans,camera);
 	texture.BindTexture(0);
-	mesh.Draw();//draws mesh
-
+	mesh1.DrawMesh();//draws mesh
 	count = count + 0.01f;
 
 	glEnableClientState(GL_COLOR_ARRAY);

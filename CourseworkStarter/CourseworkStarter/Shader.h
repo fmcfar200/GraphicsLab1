@@ -2,7 +2,7 @@
 #include <string>
 #include <GL\glew.h>
 #include "Transform.h"
-
+#include "View.h"
 class Shader
 {
 public:
@@ -15,7 +15,7 @@ public:
 	void CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage);
 	GLuint CreateShader(const std::string& text, unsigned int type);
 
-	void Update(const Transform& trans);
+	void Update(const Transform& trans, const View& camera);
 	
 
 
