@@ -2,17 +2,25 @@
 #include <glm\glm.hpp>
 #include <GL\glew.h>
 #include <string>
+#include <vector>
 
 class Vertex
 {
 public:
-	Vertex(const glm::vec3& pos)
+	Vertex(const glm::vec3& pos, const glm::vec2& textureCoord)
 	{
 		this->position = pos;
+		this->textureCoord = textureCoord;
+
 	}
+
+	glm::vec3 position;
+	glm::vec2 textureCoord;
+
 protected:
 private:
-	glm::vec3 position;
+	
+
 };
 
 class Mesh
@@ -27,6 +35,7 @@ private:
 	enum
 	{
 		POSITION_VERTEXBUFFER,
+		TEXTURECOORDS_VB,
 		NUM_BUFFER
 	};
 

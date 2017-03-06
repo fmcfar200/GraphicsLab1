@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <GL\glew.h>
+#include "Transform.h"
 
 class Shader
 {
@@ -14,17 +15,24 @@ public:
 	void CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage);
 	GLuint CreateShader(const std::string& text, unsigned int type);
 
+	void Update(const Transform& trans);
 	
 
 
 protected:
 private:
 	static const unsigned int NUM_OF_SHADERS = 2; // number of shaders
-	Shader(const Shader& other) {}
-	void operator=(const Shader& other) {}
+
+	enum
+	{
+		TRANSFORM_UNIF,
+
+		NUM_OF_UNIFORMS
+	};
 
 	GLuint shaderProg; // Track the shader program
 	GLuint shaders[NUM_OF_SHADERS]; //array of shaders
+	GLuint uniforms[NUM_OF_UNIFORMS]; //no of uniform vars
 };
 
 

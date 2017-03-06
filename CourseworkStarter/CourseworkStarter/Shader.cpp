@@ -14,12 +14,18 @@ Shader::Shader(const std::string & filename)
 	}
 
 	glBindAttribLocation(shaderProg, 0, "position");
+	glBindAttribLocation(shaderProg, 1, "textureCoord");
+
 	glLinkProgram(shaderProg); //creates executables that will run on the gpu shader
 	CheckShaderError(shaderProg, GL_LINK_STATUS, true, "Error: Shader shaderProg linking failed"); //checks for errors
 
 	glValidateProgram(shaderProg); //checks entire program is valid
 	CheckShaderError(shaderProg, GL_VALIDATE_STATUS, true, "Error: Shader program is not valid");
+	
+	uniforms[TRANSFORM_UNIF] = glGetUniformLocation(shaderProg, "trans");
+
 }
+
 Shader::~Shader()
 {
 	for (int i = 0; i < NUM_OF_SHADERS; i++)
@@ -103,6 +109,13 @@ GLuint Shader::CreateShader(const std::string & text, unsigned int type)
 	CheckShaderError(shader, GL_COMPILE_STATUS, false, "Error compiling shader!"); //check for compile error
 
 	return shader;
+}
+
+void Shader::Update(const Transform & trans)
+{
+	glm::mat4 modelMat = trans.GetModel();
+	glUniformMatrix4fv(uniforms[TRANSFORM_UNIF], 1, GLU_FALSE, &modelMat[0][0]);
+
 }
 
 

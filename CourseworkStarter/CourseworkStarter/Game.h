@@ -4,7 +4,7 @@
 #include "Display.h" 
 #include "Mesh.h"
 #include "Shader.h"
-
+#include "Texture.h"
 enum class State { PLAY, EXIT };
 
 class Game
@@ -24,5 +24,6 @@ private:
 	Display gameDisplay;
 	State gameState;
 
+	float count = 0;
 };
 
