@@ -10,7 +10,7 @@ Game::Game()
 	gameState = State::PLAY;
 	Window* gameDisp = new Window();
 
-	Mesh* mesh();
+	MeshManager* mesh();
 
 	View* cam();
 
@@ -65,8 +65,8 @@ void Game::draw()
 	
 	gameDisplay.ClearDisplay(0.0f,0.0f,0.0f,1.0f);
 	
-	Shader shader("C:\\Users\\Fraser\\Documents\\Uni\\Year3\\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\"); //shader obj
-	Texture texture("C:\\Users\\Fraser\\Documents\\Uni\\Year3\\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\bricks.jpg");
+	ShaderManager shader("C:\\Users\\Fraser\\Documents\\Uni\\Year3\\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\"); //shader obj
+	TextureManager texture("C:\\Users\\Fraser\\Documents\\Uni\\Year3\\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\bricks.jpg");
 
 	trans.SetPos(glm::vec3(sinf(count), 0.0, 0.0));
 	trans.SetRot(glm::vec3(0.0, 0.0, count * 5));

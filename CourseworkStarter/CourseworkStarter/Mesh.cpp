@@ -1,7 +1,7 @@
-#include "Mesh.h"
+#include "MeshManager.h"
 
 
-Mesh::Mesh()
+MeshManager::MeshManager()
 {
 	/*
 	std::vector<glm::vec3> positions; //holds the position data
@@ -35,12 +35,12 @@ Mesh::Mesh()
 	*/
 }
 
-Mesh::~Mesh()
+MeshManager::~MeshManager()
 {
 	glDeleteVertexArrays(1, &VAO);
 }
 
-void Mesh::initialise(Vertex * vertices, unsigned int numVertices, unsigned int * indices, unsigned int numIndices)
+void MeshManager::initialise(VertexManager * vertices, unsigned int numVertices, unsigned int * indices, unsigned int numIndices)
 {
 	IndexedModel mod;
 
@@ -58,14 +58,14 @@ void Mesh::initialise(Vertex * vertices, unsigned int numVertices, unsigned int 
 
 }
 
-void Mesh::loadModelFromFile(const std::string & filename)
+void MeshManager::loadModelFromFile(const std::string & filename)
 {
 	IndexedModel mod = OBJModel(filename).ToIndexedModel();
 	initialiseModel(mod);
 
 }
 
-void Mesh::initialiseModel(const IndexedModel & model)
+void MeshManager::initialiseModel(const IndexedModel & model)
 {
 	drawCount = model.indices.size();
 
@@ -95,7 +95,7 @@ void Mesh::initialiseModel(const IndexedModel & model)
 	glBindVertexArray(0); // unbind our VAO
 }
 
-void Mesh::DrawMesh()
+void MeshManager::DrawMesh()
 {
 	glBindVertexArray(VAO);
 	glDrawArrays(GL_TRIANGLES, 0, drawCount);

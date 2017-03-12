@@ -2,9 +2,9 @@
 #include <SDL\SDL.h>
 #include <GL/glew.h>
 #include "Window.h" 
-#include "Mesh.h"
-#include "Shader.h"
-#include "Texture.h"
+#include "MeshManager.h"
+#include "ShaderManager.h"
+#include "TextureManager.h"
 #include "Transform.h"
 #include "View.h"
 enum class State { PLAY, EXIT };
@@ -26,8 +26,8 @@ private:
 	Window gameDisplay;
 	State gameState;
 
-	Mesh mesh1;
-	Mesh mesh2;
+	MeshManager mesh1;
+	MeshManager mesh2;
 
 	View camera;
 

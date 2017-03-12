@@ -1,3 +1,12 @@
-﻿  Game.cpp
-  CourseworkStarter.vcxproj -> C:\Users\Fraser\Documents\Uni\Year3\B\Graphics\GraphicsLabs\CourseworkStarter\Debug\CourseworkStarter.exe
-  CourseworkStarter.vcxproj -> C:\Users\Fraser\Documents\Uni\Year3\B\Graphics\GraphicsLabs\CourseworkStarter\Debug\CourseworkStarter.pdb (Full PDB)
+﻿  TextureManager.cpp
+  ShaderManager.cpp
+  Mesh.cpp
+  main.cpp
+  Game.cpp
+  Window.cpp
+  obj_loader.cpp
+c:\users\fraser\documents\github\graphicslab1\courseworkstarter\courseworkstarter\obj_loader.cpp(378): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+  stb_image.c
+  CourseworkStarter.vcxproj -> C:\Users\Fraser\Documents\GitHub\GraphicsLab1\CourseworkStarter\Debug\CourseworkStarter.exe
+  CourseworkStarter.vcxproj -> C:\Users\Fraser\Documents\GitHub\GraphicsLab1\CourseworkStarter\Debug\CourseworkStarter.pdb (Full PDB)
