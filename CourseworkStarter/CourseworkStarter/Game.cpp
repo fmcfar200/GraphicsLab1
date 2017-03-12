@@ -46,6 +46,30 @@ void Game::updateInput()
 		case SDL_QUIT:
 			gameState = State::EXIT;
 			break;
+
+		case SDL_KEYDOWN:
+			switch (sdlEvent.key.keysym.sym)
+			{
+				//camera movement
+			case SDLK_UP:
+				camera.MoveForward(0.5f);
+				break;
+			case SDLK_DOWN:
+				camera.MoveBackwards(0.5f);
+				break;
+			case SDLK_RIGHT:
+				camera.MoveRight(0.5f);
+				break;
+			case SDLK_LEFT:
+				camera.MoveLeft(0.5f);
+				break;
+
+			case SDLK_ESCAPE:
+				gameState = State::EXIT;
+				break;
+
+
+			}
 		}
 	}
 }
@@ -68,9 +92,9 @@ void Game::draw()
 	ShaderManager shader("C:\\Users\\Fraser\\Documents\\Uni\\Year3\\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\"); //shader obj
 	TextureManager texture("C:\\Users\\Fraser\\Documents\\Uni\\Year3\\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\bricks.jpg");
 
-	trans.SetPos(glm::vec3(sinf(count), 0.0, 0.0));
-	trans.SetRot(glm::vec3(0.0, 0.0, count * 5));
-	trans.SetScale(glm::vec3(sinf(count), sinf(count), sinf(count)));
+	trans.SetPos(glm::vec3(0, 0.0, 0.0));
+	trans.SetRot(glm::vec3(0.0, 0.0,0));
+	trans.SetScale(glm::vec3(1,1,1));
 
 	shader.BindShader();//bind shader
 	shader.Update(trans,camera);

@@ -24,6 +24,26 @@ public:
 		return projectionMat * glm::lookAt(position, position + forward, up);
 	}
 
+	void MoveForward(float amount)
+	{
+		position += forward * amount;
+	}
+
+	void MoveBackwards(float amount)
+	{
+		position -= forward * amount;
+	}
+
+	void MoveRight(float amount)
+	{
+		position -= glm::cross(up, forward) * amount;
+	}
+
+	void MoveLeft(float amount)
+	{
+		position += glm::cross(up, forward) * amount;
+	}
+
 private:
 	glm::mat4 projectionMat;
 	glm::vec3 position;
