@@ -31,7 +31,8 @@ void Game::RunGame()
 void Game::initialiseSystems()
 {
 	gameDisplay.initialiseDisplay();
-	mesh1.loadModelFromFile("C:\\Users\\Fraser\\Documents\\Uni\\Year3\\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\monkey3.obj");
+	//CHANGE FILE PATHS BETWEEN UNI AND HOME!!!!!!!!!!!!!!!!!!!!!!!!
+	mesh1.loadModelFromFile("C:\\Users\\fmcfar200\\Desktop\\GitHub\\GraphicsLabs\\CourseworkStarter\\res\\monkey3.obj");
 	camera.initialiseCamera(glm::vec3(0, 0, -5), 70.0f, (float)gameDisplay.GetWidth() / gameDisplay.GetHeight(), 0.01f, 1000.0);
 }
 
@@ -88,9 +89,9 @@ void Game::draw()
 
 	
 	gameDisplay.ClearDisplay(0.0f,0.0f,0.0f,1.0f);
-	
-	ShaderManager shader("C:\\Users\\Fraser\\Documents\\Uni\\Year3\\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\"); //shader obj
-	TextureManager texture("C:\\Users\\Fraser\\Documents\\Uni\\Year3\\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\bricks.jpg");
+	//CHANGE FILE PATHS BETWEEN UNI AND HOME!!!!!!!!!!!!!!!!!!!!!!!!
+	ShaderManager shader("C:\\Users\\fmcfar200\\Desktop\\GitHub\\GraphicsLabs\\CourseworkStarter\\res\\"); //shader obj
+	TextureManager texture("C:\\Users\\fmcfar200\\Desktop\\GitHub\\GraphicsLabs\\CourseworkStarter\\res\\bricks.jpg");
 
 	trans.SetPos(glm::vec3(0, 0.0, 0.0));
 	trans.SetRot(glm::vec3(0.0, 0.0,0));
