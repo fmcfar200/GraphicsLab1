@@ -13,7 +13,8 @@ Game::Game()
 	gameState = State::PLAY;
 	Window* gameDisp = new Window();
 
-	MeshManager* mesh();
+	MeshManager* mesh1();
+	MeshManager* mesh2();
 
 	View* cam();
 
@@ -90,9 +91,8 @@ void Game::gLoop()
 
 void Game::draw()
 {
-
-	
 	gameDisplay.ClearDisplay(0.0f,0.0f,0.0f,1.0f);
+
 	ShaderManager shader(RESOURCE_PATH); //shader obj
 	TextureManager texture(RESOURCE_PATH + "bricks.jpg");
 
@@ -107,6 +107,8 @@ void Game::draw()
 	texture.BindTexture(0);
 
 	mesh1.DrawMesh();//draws mesh
+	mesh2.DrawMesh();
+
 
 	count = count + 0.01f;
 

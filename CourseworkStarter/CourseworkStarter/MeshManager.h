@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 #include "obj_loader.h"
-
+#include "Transform.h"
 class VertexManager
 {
 public:
@@ -40,6 +40,8 @@ public:
 	void initialise(VertexManager* vertices, unsigned int numVertices, unsigned int* indices, unsigned int numIndices);
 	void loadModelFromFile(const std::string& filename);
 	void initialiseModel(const IndexedModel& model);
+
+
 
 
 private:
