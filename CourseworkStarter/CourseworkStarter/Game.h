@@ -28,8 +28,9 @@ private:
 
 	MeshManager mesh1;
 	MeshManager mesh2;
+	MeshManager mesh3;
 
-	View camera;
+	View cam;
 
 	float count = 0;
 };

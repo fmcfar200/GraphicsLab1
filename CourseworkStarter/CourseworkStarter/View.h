@@ -16,7 +16,7 @@ public:
 		this->forward = glm::vec3(0.0f, 0.0f, 1.0f);
 		this->up = glm::vec3(0.0f, 1.0f, 0.0f);
 		this->projectionMat = glm::perspective(fov, aspect, nearClip, farClip);
-
+		
 	}
 
 	inline glm::mat4 GetViewProjectionMatrix() const

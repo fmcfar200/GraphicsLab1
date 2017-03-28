@@ -15,6 +15,7 @@ Game::Game()
 
 	MeshManager* mesh1();
 	MeshManager* mesh2();
+	MeshManager* mesh3();
 
 	View* cam();
 
@@ -35,10 +36,12 @@ void Game::RunGame()
 void Game::initialiseSystems()
 {
 	gameDisplay.initialiseDisplay();
-	mesh1.loadModelFromFile(RESOURCE_PATH + "monkey3.obj");
-	mesh2.loadModelFromFile(RESOURCE_PATH + "monkey3.obj");
 
-	camera.initialiseCamera(glm::vec3(0, 0, -5), 70.0f, (float)gameDisplay.GetWidth() / gameDisplay.GetHeight(), 0.01f, 1000.0);
+	mesh1.loadModelFromFile(RESOURCE_PATH + "bear.obj");
+	mesh2.loadModelFromFile(RESOURCE_PATH + "boar.obj");
+	mesh3.loadModelFromFile(RESOURCE_PATH + "deer.obj");
+
+	cam.initialiseCamera(glm::vec3(0, 0, -5), 70.0f, (float)gameDisplay.GetWidth() / gameDisplay.GetHeight(), 0.01f, 1000.0);
 }
 
 void Game::updateInput()
@@ -58,16 +61,16 @@ void Game::updateInput()
 			{
 				//camera movement
 			case SDLK_UP:
-				camera.MoveForward(0.5f);
+				cam.MoveForward(0.5f);
 				break;
 			case SDLK_DOWN:
-				camera.MoveBackwards(0.5f);
+				cam.MoveBackwards(0.5f);
 				break;
 			case SDLK_RIGHT:
-				camera.MoveRight(0.5f);
+				cam.MoveRight(0.5f);
 				break;
 			case SDLK_LEFT:
-				camera.MoveLeft(0.5f);
+				cam.MoveLeft(0.5f);
 				break;
 
 			case SDLK_ESCAPE:
@@ -93,22 +96,37 @@ void Game::draw()
 {
 	gameDisplay.ClearDisplay(0.0f,0.0f,0.0f,1.0f);
 
-	ShaderManager shader(RESOURCE_PATH); //shader obj
-	TextureManager texture(RESOURCE_PATH + "bricks.jpg");
+	ShaderManager shader1(RESOURCE_PATH); //shader obj
+	ShaderManager shader2(RESOURCE_PATH);
 
-	trans.SetPos(glm::vec3(0, 0.0, 0.0));
-	trans.SetRot(glm::vec3(0.0, 0.0, 0));
-	trans.SetScale(glm::vec3(1, 1, 1));
+	TextureManager texture1(RESOURCE_PATH + "bricks.jpg");
 
+	mesh1.trans.SetPos(glm::vec3(0, 0.0, 0.0));
+	mesh1.trans.SetRot(glm::vec3(0.0, 0.0, 0));
+	mesh1.trans.SetScale(glm::vec3(1, 1, 1));
 
-	shader.BindShader();//bind shader
-	shader.Update(trans,camera);
+	
+	mesh2.trans.SetPos(glm::vec3(0, 0.0, 0.0));
+	mesh2.trans.SetRot(glm::vec3(0.0, 0, 0));
+	mesh2.trans.SetScale(glm::vec3(1, 1, 1));
 
-	texture.BindTexture(0);
+	mesh2.trans.SetPos(glm::vec3(0, 0.0, 0.0));
+	mesh2.trans.SetRot(glm::vec3(0.0, 0, 0));
+	mesh2.trans.SetScale(glm::vec3(1, 1, 1));
+	
+
+	shader1.BindShader();//bind shader
+	shader1.Update(mesh1.trans,cam);
+
+	
+	shader2.BindShader();
+	shader2.Update(mesh2.trans,cam);
+	
+	texture1.BindTexture(0);
 
 	mesh1.DrawMesh();//draws mesh
 	mesh2.DrawMesh();
-
+	mesh3.DrawMesh();
 
 	count = count + 0.01f;
 
