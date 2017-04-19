@@ -20,6 +20,8 @@ void MeshManager::initialise(VertexManager * vertices, unsigned int numVertices,
 		mod.positions.push_back(*vertices[i].GetPosition());
 		mod.texCoords.push_back(*vertices[i].GetTextureCoord());
 		mod.normals.push_back(*vertices[i].GetNorm());
+
+
 	}
 
 	for (unsigned int i = 0; i < numIndices; i++)

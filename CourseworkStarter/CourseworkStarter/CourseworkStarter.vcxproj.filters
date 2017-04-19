@@ -72,5 +72,7 @@
   <ItemGroup>
     <None Include="..\res\shader.frag" />
     <None Include="..\res\shader.vert" />
+    <None Include="..\res\skybox.frag" />
+    <None Include="..\res\skybox.vert" />
   </ItemGroup>
 </Project>

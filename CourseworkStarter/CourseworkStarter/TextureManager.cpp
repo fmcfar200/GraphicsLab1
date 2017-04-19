@@ -39,8 +39,6 @@ TextureManager::~TextureManager()
 {
 	//delete our textures
 	glDeleteTextures(1, &texHandler); //number of and address of texture
-
-
 }
 
 void TextureManager::BindTexture(unsigned int unit)

@@ -41,7 +41,6 @@ public:
 	void loadModelFromFile(const std::string& filename);
 	void initialiseModel(const IndexedModel& model);
 
-	Transform trans;
 
 
 private:
