@@ -103,14 +103,18 @@ void Skybox::drawSky(float size)
 		glDisable(GL_TEXTURE_2D);
 }
 
-unsigned int Skybox::loadSkyTexture(const std::string& filename)
+GLuint Skybox::loadSkyTexture(const std::string& filename)
 {
-	unsigned int num;       //the id for the texture
+	GLuint num;       //the id for the texture
+
+	int width;
+	int height;
+	int numComponents;
 
 	glGenTextures(1, &num);  //we generate a unique one
-	SDL_Surface* img = SDL_LoadBMP(filename.c_str()); //load the bmp image
+	unsigned char* imageData = stbi_load((filename).c_str(), &width, &height, &numComponents, 4);
 
-	if (img == NULL)
+	if (imageData == NULL)
 	{
 		std::cerr << "texture load failed" << filename << std::endl;
 	}
@@ -121,9 +125,10 @@ unsigned int Skybox::loadSkyTexture(const std::string& filename)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //same if the image bigger
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);      //we repeat the pixels in the edge of the texture, it will hide that 1px wide line at the edge of the cube, which you have seen in the video
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);      //we do it for vertically and horizontally (previous line)
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, img->w, img->h, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, img->pixels);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, imageData);
 
-	SDL_FreeSurface(img);
+	stbi_image_free(imageData);
+
 	return num;     //and we return the id
 }
 

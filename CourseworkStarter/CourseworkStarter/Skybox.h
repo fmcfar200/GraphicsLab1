@@ -15,11 +15,11 @@ public:
 
 	void initialiseSkybox();
 	void drawSky(float size);
-	unsigned int loadSkyTexture(const std::string& filename);
+	GLuint loadSkyTexture(const std::string& filename);
 
 private:
 	GLuint textureHandler;
-	unsigned int skybox[6];
+	GLuint skybox[6];
 	enum 
 	{
 		LEFT = 0,

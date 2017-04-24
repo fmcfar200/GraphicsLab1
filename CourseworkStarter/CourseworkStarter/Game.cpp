@@ -42,11 +42,24 @@ void Game::initialiseSystems()
 {
 	gameDisplay.initialiseDisplay();
 
-	mesh1.loadModelFromFile(RESOURCE_PATH + "bear2.obj");
-	mesh2.loadModelFromFile(RESOURCE_PATH + "boar.obj");
+	mesh1.loadModelFromFile(RESOURCE_PATH + "Barrel_01.obj");
+	mesh2.loadModelFromFile(RESOURCE_PATH + "Hatchet.obj");
 	mesh3.loadModelFromFile(RESOURCE_PATH + "deer.obj");
 
+	trans.SetPos(glm::vec3(0, 0.0, 0.0));
+	trans.SetRot(glm::vec3(0.0, 0, 0));
+	trans.SetScale(glm::vec3(1.5, 1.5, 1.5));
 
+	trans2.SetPos(glm::vec3(10.0f, 0.0f, 0.0f));
+	trans2.SetRot(glm::vec3(0.0, 0, 0));
+	trans2.SetScale(glm::vec3(1, 1, 1));
+
+	trans3.SetPos(glm::vec3(-10.0f, 0.0f, 0.0f));
+	trans3.SetRot(glm::vec3(0.0, 4, 0));
+	trans3.SetScale(glm::vec3(0.75, 0.75, 0.75));
+
+
+	//sky.initialiseSkybox();
 
 	cam.initialiseCamera(glm::vec3(5, 0, -40), 70.0f, (float)gameDisplay.GetWidth() / gameDisplay.GetHeight(), 0.01f, 1000.0);
 }
@@ -106,46 +119,37 @@ void Game::draw()
 
 
 	ShaderManager shader1(RESOURCE_PATH); //shader obj
-	TextureManager texture1(RESOURCE_PATH + "brownfur.png");
+	TextureManager texture1(RESOURCE_PATH + "metal.png");
 
-	trans.SetPos(glm::vec3(0, 0.0, 0.0));
-	trans.SetRot(glm::vec3(0.0, 0, 0));
-	trans.SetScale(glm::vec3(1, 1, 1));
-
+	texture1.BindTexture(0);
 	shader1.BindShader();//bind shader
 	shader1.Update(trans,cam);
 
-	texture1.BindTexture(0);
 
 	mesh1.DrawMesh();//draws mesh
 
 	ShaderManager shader2(RESOURCE_PATH); //shader obj
-	TextureManager texture2(RESOURCE_PATH + "lightbrownfur.jpg");
+	TextureManager texture2(RESOURCE_PATH + "metal2.png");
 
-	trans2.SetPos(glm::vec3(10.0f, 0.0f, 0.0f));
-	trans2.SetRot(glm::vec3(0.0, 0, 0));
-	trans2.SetScale(glm::vec3(1, 1, 1));
-
+	texture2.BindTexture(1);
 	shader2.BindShader();
 	shader2.Update(trans2, cam);
 
-	texture2.BindTexture(1);
 
 	mesh2.DrawMesh();
 
 	ShaderManager shader3(RESOURCE_PATH); //shader obj
-	TextureManager texture3(RESOURCE_PATH + "bricks.jpg");
+	TextureManager texture3(RESOURCE_PATH + "metal.png");
 
-	trans3.SetPos(glm::vec3(-10.0f, 0.0f, 0.0f));
-	trans3.SetRot(glm::vec3(0.0, 4, 0));
-	trans3.SetScale(glm::vec3(0.5, 0.5, 0.5));
-
+	
+	texture3.BindTexture(2);
 	shader3.BindShader();
 	shader3.Update(trans3, cam);
 
-	texture3.BindTexture(2);
 
 	mesh3.DrawMesh();
+
+	//sky.drawSky(1000);
 
 	count = count + 0.01f;
 

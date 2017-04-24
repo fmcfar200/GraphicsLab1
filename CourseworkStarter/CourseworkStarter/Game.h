@@ -32,6 +32,7 @@ private:
 	MeshManager mesh2;
 	MeshManager mesh3;
 
+
 	View cam;
 
 	Skybox sky;
