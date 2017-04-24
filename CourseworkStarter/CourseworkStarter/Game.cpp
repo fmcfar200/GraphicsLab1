@@ -19,6 +19,8 @@ Game::Game()
 	MeshManager* mesh2();
 	MeshManager* mesh3();
 
+	Skybox* sky();
+
 	View* cam();
 	
 
@@ -101,6 +103,7 @@ void Game::gLoop()
 void Game::draw()
 {
 	gameDisplay.ClearDisplay(0.0f,0.0f,0.0f,1.0f);
+
 
 	ShaderManager shader1(RESOURCE_PATH); //shader obj
 	TextureManager texture1(RESOURCE_PATH + "brownfur.png");

@@ -1,3 +1,12 @@
-﻿  Game.cpp
+﻿  Skybox.cpp
+c:\users\fraser\documents\uni\year3\b\graphics\graphicslabs\courseworkstarter\courseworkstarter\skybox.cpp(15): warning C4129: 'B': unrecognized character escape sequence
+c:\users\fraser\documents\uni\year3\b\graphics\graphicslabs\courseworkstarter\courseworkstarter\skybox.cpp(16): warning C4129: 'B': unrecognized character escape sequence
+c:\users\fraser\documents\uni\year3\b\graphics\graphicslabs\courseworkstarter\courseworkstarter\skybox.cpp(17): warning C4129: 'B': unrecognized character escape sequence
+c:\users\fraser\documents\uni\year3\b\graphics\graphicslabs\courseworkstarter\courseworkstarter\skybox.cpp(18): warning C4129: 'B': unrecognized character escape sequence
+c:\users\fraser\documents\uni\year3\b\graphics\graphicslabs\courseworkstarter\courseworkstarter\skybox.cpp(19): warning C4129: 'B': unrecognized character escape sequence
+c:\users\fraser\documents\uni\year3\b\graphics\graphicslabs\courseworkstarter\courseworkstarter\skybox.cpp(20): warning C4129: 'B': unrecognized character escape sequence
+c:\users\fraser\documents\uni\year3\b\graphics\graphicslabs\courseworkstarter\courseworkstarter\skybox.cpp(25): warning C4800: 'GLboolean': forcing value to bool 'true' or 'false' (performance warning)
+  Game.cpp
+  Generating Code...
   CourseworkStarter.vcxproj -> C:\Users\Fraser\Documents\Uni\Year3\B\Graphics\GraphicsLabs\CourseworkStarter\Debug\CourseworkStarter.exe
   CourseworkStarter.vcxproj -> C:\Users\Fraser\Documents\Uni\Year3\B\Graphics\GraphicsLabs\CourseworkStarter\Debug\CourseworkStarter.pdb (Full PDB)

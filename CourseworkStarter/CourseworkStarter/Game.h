@@ -7,6 +7,8 @@
 #include "TextureManager.h"
 #include "Transform.h"
 #include "View.h"
+#include "Skybox.h"
+
 enum class State { PLAY, EXIT };
 
 class Game
@@ -31,6 +33,8 @@ private:
 	MeshManager mesh3;
 
 	View cam;
+
+	Skybox sky;
 
 	float count = 0;
 };
