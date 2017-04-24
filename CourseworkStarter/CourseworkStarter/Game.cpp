@@ -19,6 +19,7 @@ Game::Game()
 	MeshManager* mesh2();
 	MeshManager* mesh3();
 
+
 	Skybox* sky();
 
 	View* cam();
@@ -100,6 +101,7 @@ void Game::updateInput()
 
 			}
 		}
+		cam.MoveMouse();
 	}
 }
 
@@ -139,7 +141,7 @@ void Game::draw()
 	mesh2.DrawMesh();
 
 	ShaderManager shader3(RESOURCE_PATH); //shader obj
-	TextureManager texture3(RESOURCE_PATH + "metal.png");
+	TextureManager texture3(RESOURCE_PATH + "metal2.png");
 
 	
 	texture3.BindTexture(2);
@@ -149,7 +151,7 @@ void Game::draw()
 
 	mesh3.DrawMesh();
 
-	//sky.drawSky(1000);
+	//sky.drawSky(100);
 
 	count = count + 0.01f;
 
