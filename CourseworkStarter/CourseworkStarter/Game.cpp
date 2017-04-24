@@ -62,7 +62,10 @@ void Game::initialiseSystems()
 
 	//sky.initialiseSkybox();
 
-	cam.initialiseCamera(glm::vec3(5, 0, -40), 70.0f, (float)gameDisplay.GetWidth() / gameDisplay.GetHeight(), 0.01f, 1000.0);
+	cam.initialiseCamera(glm::vec3(5, 0, -40), 70.0f, 
+		(float)gameDisplay.GetWidth() / gameDisplay.GetHeight(), 0.01f, 1000.0);
+
+
 }
 
 void Game::updateInput()
@@ -117,7 +120,7 @@ void Game::gLoop()
 
 void Game::draw()
 {
-	gameDisplay.ClearDisplay(0.0f,0.0f,0.0f,1.0f);
+	gameDisplay.ClearDisplay(0.5f,0.5f,0.5f,1.0f);
 
 
 	ShaderManager shader1(RESOURCE_PATH + "shader"); //shader obj
@@ -152,6 +155,8 @@ void Game::draw()
 	mesh3.DrawMesh();
 
 	//sky.drawSky(100);
+
+
 
 	count = count + 0.01f;
 
