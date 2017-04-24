@@ -151,6 +151,7 @@
   <ItemGroup>
     <ClCompile Include="obj_loader.cpp" />
     <ClCompile Include="Skybox.cpp" />
+    <ClCompile Include="View.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />

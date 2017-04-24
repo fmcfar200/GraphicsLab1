@@ -5,8 +5,8 @@
 ShaderManager::ShaderManager(const std::string & filename)
 {
 	shaderProg = glCreateProgram();
-	shaders[0] = CreateShader(LoadShaderFromFile(filename+"shader.vert"), GL_VERTEX_SHADER);
-	shaders[1] = CreateShader(LoadShaderFromFile(filename+"shader.frag"), GL_FRAGMENT_SHADER);
+	shaders[0] = CreateShader(LoadShaderFromFile(filename+".vert"), GL_VERTEX_SHADER);
+	shaders[1] = CreateShader(LoadShaderFromFile(filename+".frag"), GL_FRAGMENT_SHADER);
 
 	for (int i = 0; i < NUM_OF_SHADERS; i++)
 	{
@@ -15,6 +15,7 @@ ShaderManager::ShaderManager(const std::string & filename)
 
 	glBindAttribLocation(shaderProg, 0, "position");
 	glBindAttribLocation(shaderProg, 1, "textureCoord");
+	glBindAttribLocation(shaderProg, 2, "normal");
 
 	glLinkProgram(shaderProg); //creates executables that will run on the gpu shader
 	CheckShaderError(shaderProg, GL_LINK_STATUS, true, "Error: Shader shaderProg linking failed"); //checks for errors

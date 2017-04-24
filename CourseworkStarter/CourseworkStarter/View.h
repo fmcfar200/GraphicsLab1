@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
 #include <SDL\SDL.h>
-
+#include "Window.h"
 using namespace glm;
 struct View
 {
@@ -19,6 +19,11 @@ public:
 		this->up = glm::vec3(0.0f, 1.0f, 0.0f);
 		this->projectionMat = glm::perspective(fov, aspect, nearClip, farClip);
 		
+	}
+
+	void Update(float width, float height)
+	{
+		projectionMat = perspective(radians(45.0f),width/height, 0.01f, 1000.0f);
 	}
 
 	inline glm::mat4 GetViewProjectionMatrix() const
@@ -48,11 +53,12 @@ public:
 
 	void MoveMouse()
 	{
+		
 		GLfloat currentFrame = SDL_GetTicks();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
 
-		camSpeed = 1.0f * deltaTime;
+		camSpeed = 0.5f * deltaTime;
 
 		int xPos, yPos;
 		SDL_GetGlobalMouseState(&xPos,&yPos);
@@ -62,13 +68,14 @@ public:
 		lastX = xPos;
 		lastY = yPos;
 
-		GLfloat sens = 0.20f;
+		GLfloat sens = 0.10f;
 		xOffset *= sens;
 		yOffset *= sens;
 
 		yaw += xOffset;
 		pitch += yOffset;
 
+		/*
 		if (pitch > 89.0f)
 		{
 			pitch = 89.0f;
@@ -77,7 +84,7 @@ public:
 		{
 			pitch = -89.0f;
 		}
-		
+		*/
 		vec3 front;
 		front.x = cos(radians(yaw)) * cos(radians(pitch));
 		front.y = sin(radians(pitch));
@@ -104,4 +111,5 @@ private:
 	float lastFrame = 0.0f;
 	float camSpeed = 1.0f;
 
+	Window* display;
 };

@@ -8,11 +8,11 @@
 class VertexManager
 {
 public:
-	VertexManager(const glm::vec3& pos, const glm::vec2& textureCoord)
+	VertexManager(const glm::vec3& pos, const glm::vec2& textureCoord, const glm::vec3& normal = glm::vec3(0,0,0))
 	{
 		this->position = pos;
 		this->textureCoord = textureCoord;
-		this->norm = norm;
+		this->norm = normal;
 
 	}
 

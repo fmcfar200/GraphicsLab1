@@ -45,7 +45,7 @@ void Game::initialiseSystems()
 
 	mesh1.loadModelFromFile(RESOURCE_PATH + "Barrel_01.obj");
 	mesh2.loadModelFromFile(RESOURCE_PATH + "Hatchet.obj");
-	mesh3.loadModelFromFile(RESOURCE_PATH + "deer.obj");
+	mesh3.loadModelFromFile(RESOURCE_PATH + "bear.obj");
 
 	trans.SetPos(glm::vec3(0, 0.0, 0.0));
 	trans.SetRot(glm::vec3(0.0, 0, 0));
@@ -81,16 +81,16 @@ void Game::updateInput()
 			switch (sdlEvent.key.keysym.sym)
 			{
 				//camera movement
-			case SDLK_UP:
+			case SDLK_w:
 				cam.MoveForward(1);
 				break;
-			case SDLK_DOWN:
+			case SDLK_s:
 				cam.MoveBackwards(1);
 				break;
-			case SDLK_RIGHT:
+			case SDLK_d:
 				cam.MoveRight(1);
 				break;
-			case SDLK_LEFT:
+			case SDLK_a:
 				cam.MoveLeft(1);
 				break;
 
@@ -110,7 +110,7 @@ void Game::gLoop()
 	while (gameState != State::EXIT)
 	{
 		updateInput();
-
+		cam.Update(gameDisplay.GetWidth(),gameDisplay.GetHeight());
 		draw();
 	}
 }
@@ -120,7 +120,7 @@ void Game::draw()
 	gameDisplay.ClearDisplay(0.0f,0.0f,0.0f,1.0f);
 
 
-	ShaderManager shader1(RESOURCE_PATH); //shader obj
+	ShaderManager shader1(RESOURCE_PATH + "shader"); //shader obj
 	TextureManager texture1(RESOURCE_PATH + "metal.png");
 
 	texture1.BindTexture(0);
@@ -130,7 +130,7 @@ void Game::draw()
 
 	mesh1.DrawMesh();//draws mesh
 
-	ShaderManager shader2(RESOURCE_PATH); //shader obj
+	ShaderManager shader2(RESOURCE_PATH + "shader"); //shader obj
 	TextureManager texture2(RESOURCE_PATH + "metal2.png");
 
 	texture2.BindTexture(1);
@@ -140,7 +140,7 @@ void Game::draw()
 
 	mesh2.DrawMesh();
 
-	ShaderManager shader3(RESOURCE_PATH); //shader obj
+	ShaderManager shader3(RESOURCE_PATH + "shader"); //shader obj
 	TextureManager texture3(RESOURCE_PATH + "metal2.png");
 
 	

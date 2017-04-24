@@ -1,10 +1,11 @@
-﻿  Game.cpp
-c:\users\fraser\documents\uni\year3\b\graphics\graphicslabs\courseworkstarter\courseworkstarter\view.h(51): warning C4244: 'initializing': conversion from 'Uint32' to 'GLfloat', possible loss of data
-c:\users\fraser\documents\uni\year3\b\graphics\graphicslabs\courseworkstarter\courseworkstarter\view.h(62): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\fraser\documents\uni\year3\b\graphics\graphicslabs\courseworkstarter\courseworkstarter\view.h(63): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+﻿  ShaderManager.cpp
+c:\users\fraser\documents\uni\year3\b\graphics\graphicslabs\courseworkstarter\courseworkstarter\view.h(57): warning C4244: 'initializing': conversion from 'Uint32' to 'GLfloat', possible loss of data
+c:\users\fraser\documents\uni\year3\b\graphics\graphicslabs\courseworkstarter\courseworkstarter\view.h(68): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\fraser\documents\uni\year3\b\graphics\graphicslabs\courseworkstarter\courseworkstarter\view.h(69): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Game.cpp
+c:\users\fraser\documents\uni\year3\b\graphics\graphicslabs\courseworkstarter\courseworkstarter\view.h(57): warning C4244: 'initializing': conversion from 'Uint32' to 'GLfloat', possible loss of data
+c:\users\fraser\documents\uni\year3\b\graphics\graphicslabs\courseworkstarter\courseworkstarter\view.h(68): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\fraser\documents\uni\year3\b\graphics\graphicslabs\courseworkstarter\courseworkstarter\view.h(69): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Generating Code...
-  Skipping... (no relevant changes detected)
-  main.cpp
-  ShaderManager.cpp
   CourseworkStarter.vcxproj -> C:\Users\Fraser\Documents\Uni\Year3\B\Graphics\GraphicsLabs\CourseworkStarter\Debug\CourseworkStarter.exe
   CourseworkStarter.vcxproj -> C:\Users\Fraser\Documents\Uni\Year3\B\Graphics\GraphicsLabs\CourseworkStarter\Debug\CourseworkStarter.pdb (Full PDB)
