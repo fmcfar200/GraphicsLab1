@@ -12,66 +12,68 @@ public:
 	{
 		
 	};
-	void initialiseCamera(const glm::vec3& pos, float fov, float aspect, float nearClip, float farClip)
+	void initialiseCamera(const vec3& pos, float fov, float aspect, float nearClip, float farClip)  //all camera values to set to paramter values
 	{
-		this->position = pos;
-		this->forward = glm::vec3(0.0f, 0.0f, 1.0f);
-		this->up = glm::vec3(0.0f, 1.0f, 0.0f);
-		this->projectionMat = glm::perspective(fov, aspect, nearClip, farClip);
+		this->position = pos; 
+		this->forwardV = vec3(0.0f, 0.0f, 1.0f); 
+		this->upV = vec3(0.0f, 1.0f, 0.0f);
+		this->projectionMat = perspective(fov, aspect, nearClip, farClip);
 		
 	}
 
-	void Update(float width, float height)
+	void Update(float width, float height) //updates camera projection matrix
 	{
-		projectionMat = perspective(radians(45.0f),width/height, 0.01f, 1000.0f);
+		projectionMat = perspective(radians(45.0f),width/height, 0.01f, 1000.0f); //projection matrix is updated
 	}
 
-	inline glm::mat4 GetViewProjectionMatrix() const
+	inline glm::mat4 GetViewProjectionMatrix() const //getter that returns View projection matrix
 	{
-		return projectionMat * glm::lookAt(position, position + forward, up);
+		return projectionMat * lookAt(position, position + forwardV, upV);
 	}
 
-	void MoveForward(float amount)
+	void MoveForward(float amount) //moves cam forward
 	{
-		position += forward * amount;
+		position += forwardV * amount;
 	}
 
-	void MoveBackwards(float amount)
+	void MoveBackwards(float amount) //moves cam back
 	{
-		position -= forward * amount;
+		position -= forwardV * amount;
 	}
 
-	void MoveRight(float amount)
+	void MoveRight(float amount) //moves cam right
 	{
-		position -= glm::cross(up, forward) * amount;
+		position -= cross(upV, forwardV) * amount;
 	}
 
-	void MoveLeft(float amount)
+	void MoveLeft(float amount) //moves cam left
 	{
-		position += glm::cross(up, forward) * amount;
+		position += cross(upV, forwardV) * amount;
 	}
 
-	void MoveMouse()
+	void MoveMouse()	//moves camera by mouse
 	{
 		
-		GLfloat currentFrame = SDL_GetTicks();
-		deltaTime = currentFrame - lastFrame;
-		lastFrame = currentFrame;
+		GLfloat currentFrame = SDL_GetTicks(); //current frame millseconds
+		deltaTime = currentFrame - lastFrame; //delta time is calculated
+		lastFrame = currentFrame; //last frame equals current frame
 
-		camSpeed = 1.0f * deltaTime;
+		camSpeed = 1.0f * deltaTime; //camera speed
 
-		int xPos, yPos;
-		SDL_GetGlobalMouseState(&xPos,&yPos);
+		int xPos, yPos; //current x and y positions
+		SDL_GetGlobalMouseState(&xPos,&yPos); //mouse state is stored in these value variables
 
-		GLfloat xOffset = xPos - lastX;
-		GLfloat yOffset = lastY - yPos;
-		lastX = xPos;
-		lastY = yPos;
+		GLfloat xOffset = xPos - lastX; //x Offset of camera
+		GLfloat yOffset = lastY - yPos; //y offset of camera
+		lastX = xPos; //last x position is equal to current x position
+		lastY = yPos; //last y position is equal to current y position
 
-		GLfloat sens = 0.10f;
+		GLfloat sens = 0.10f; //sensitivy
+		//offsets are manipulated by sensitivity value
 		xOffset *= sens;
 		yOffset *= sens;
 
+		//yaw and pitch is calculated from offset
 		yaw += xOffset;
 		pitch += yOffset;
 
@@ -85,32 +87,33 @@ public:
 			pitch = -89.0f;
 		}
 		*/
-		vec3 front;
-		front.x = cos(radians(yaw)) * cos(radians(pitch));
+		
+		vec3 front; //temp forward vector
+		front.x = cos(radians(yaw)) * cos(radians(pitch)); //rotation for x y and z
 		front.y = sin(radians(pitch));
 		front.z = sin(radians(yaw)) * cos(radians(pitch));
-		forward = normalize(front);
+		forwardV = normalize(front); //forward vector is set as normalized front vector
 
 		
 	}
 
-	glm::vec3 forward;
+	glm::vec3 forwardV; //forward vector
 
 
 private:
-	glm::mat4 projectionMat;
-	glm::vec3 position;
-	glm::vec3 up;
+	glm::mat4 projectionMat; //prjection matrux
+	glm::vec3 position; //camera position
+	glm::vec3 upV;	//up vector
 
 
-	float lastX = 334;
-	float lastY = 512;
+	float lastX = 334; //last x
+	float lastY = 512;	//last y
 
-	float yaw;
-	float pitch;
-	float deltaTime = 0.0f;
-	float lastFrame = 0.0f;
-	float camSpeed = 1.0f;
+	float yaw; //camera yaw
+	float pitch;	//camera pitch
+	float deltaTime = 0.0f;	//delaTime
+	float lastFrame = 0.0f;	//last frame
+	float camSpeed = 1.0f;	//camera speed
 
-	Window* display;
+	Window* display;	//window display pointer
 };

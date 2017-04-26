@@ -5,21 +5,23 @@
 #include <vector>
 #include "obj_loader.h"
 #include "Transform.h"
-class VertexManager
+class VertexManager //vertex object
 {
 public:
-	VertexManager(const glm::vec3& pos, const glm::vec2& textureCoord, const glm::vec3& normal = glm::vec3(0,0,0))
+	VertexManager(const glm::vec3& pos, const glm::vec2& textureCoord, const glm::vec3& normal = glm::vec3(0,0,0)) //constructor
 	{
+		//sets values to constructor parameters
 		this->position = pos;
 		this->textureCoord = textureCoord;
 		this->norm = normal;
 
 	}
 
-	glm::vec3 position;
-	glm::vec2 textureCoord;
-	glm::vec3 norm;
-
+	glm::vec3 position; //v position
+	glm::vec2 textureCoord; //texture coordinates
+	glm::vec3 norm; //normals
+	
+	//getters for texCoords, pos and normals
 	glm::vec3* GetPosition() { return &position; }
 	glm::vec2* GetTextureCoord() { return &textureCoord; }
 	glm::vec3* GetNorm() { return &norm; }
@@ -30,21 +32,22 @@ private:
 
 };
 
-class MeshManager
+class MeshManager //mesh object
 {
 public:
-	MeshManager();
-	~MeshManager();
-	void DrawMesh();
+	MeshManager(); //constructor
+	~MeshManager(); //destructor
+	void DrawMesh(); //draw mesh
 
-	void initialise(VertexManager* vertices, unsigned int numVertices, unsigned int* indices, unsigned int numIndices);
-	void loadModelFromFile(const std::string& filename);
-	void initialiseModel(const IndexedModel& model);
+	void initialise(VertexManager* vertices, unsigned int numVertices, unsigned int* indices, unsigned int numIndices); //initialise mesh data
+	void loadModelFromFile(const std::string& filename); //loads model obj from file
+	void initialiseModel(const IndexedModel& model); //initialises model values
 
 
 
 private:
 
+	//buffer enums
 	enum
 	{
 		POSITION_VERTEXBUFFER,
@@ -54,8 +57,8 @@ private:
 		NUM_BUFFER
 	};
 
-	GLuint VAO;
-	GLuint VABs[NUM_BUFFER];//creates our areray of buffers
+	GLuint VAO;	//vertex array objects
+	GLuint VABs[NUM_BUFFER];//creates our array of buffers
 	unsigned int drawCount; //how much of the vertexArrayObject do we want to draw
 
 

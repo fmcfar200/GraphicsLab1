@@ -7,31 +7,31 @@ Skybox::Skybox()
 
 Skybox::~Skybox()
 {
-	glDeleteTextures(6, &skybox[0]);
+	glDeleteTextures(6, &skybox[0]); //deletes textures
 }
 
 void Skybox::initialiseSkybox()
 {
+	//loads all textures to skybox 
 	skybox[LEFT] = loadSkyTexture("C:\\Users\\Fraser\\Documents\\Uni\\Year3\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\left.bmp");
 	skybox[BACK] = loadSkyTexture("C:\\Users\\Fraser\\Documents\\Uni\\Year3\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\back.bmp");
 	skybox[RIGHT] = loadSkyTexture("C:\\Users\\Fraser\\Documents\\Uni\\Year3\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\right.bmp");
 	skybox[FORWARD] = loadSkyTexture("C:\\Users\\Fraser\\Documents\\Uni\\Year3\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\front.bmp");
-	skybox[UP] = loadSkyTexture("C:\\Users\\Fraser\\Documents\\Uni\\Year3\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\up.bmp");
-	skybox[DOWN] = loadSkyTexture("C:\\Users\\Fraser\\Documents\\Uni\\Year3\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\down.bmp");
+	skybox[UP] = loadSkyTexture("C:\\Users\\Fraser\\Documents\\Uni\\Year3\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\top.bmp");
+	skybox[DOWN] = loadSkyTexture("C:\\Users\\Fraser\\Documents\\Uni\\Year3\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\bottom.bmp");
 }
 
 void Skybox::drawSky(float size)
 {
-	bool b1 = glIsEnabled(GL_TEXTURE_2D);     //new, we left the textures turned on, if it was turned on
-	glDisable(GL_LIGHTING); //turn off lighting, when making the skybox
+	glDisable(GL_LIGHTING); //turn off lighting for render pass
 	glDisable(GL_DEPTH_TEST);       //turn off depth texting
 	glEnable(GL_TEXTURE_2D);        //and turn on texturing
-	glBindTexture(GL_TEXTURE_2D, skybox[BACK]);  //use the texture we want
+	glBindTexture(GL_TEXTURE_2D, skybox[BACK]);  //use the texture 
 	glBegin(GL_QUADS);      //and draw a face
 							//back face
 	glTexCoord2f(0, 0);      //use the correct texture coordinate
-	glVertex3f(size / 2, size / 2, size / 2);       //and a vertex
-	glTexCoord2f(1, 0);      //and repeat it...
+	glVertex3f(size / 2, size / 2, size / 2);       //vertex
+	glTexCoord2f(1, 0);								//repeats
 	glVertex3f(-size / 2, size / 2, size / 2);
 	glTexCoord2f(1, 1);
 	glVertex3f(-size / 2, -size / 2, size / 2);
@@ -97,38 +97,39 @@ void Skybox::drawSky(float size)
 	glTexCoord2f(1, 0);
 	glVertex3f(size / 2, -size / 2, -size / 2);
 	glEnd();
-	glEnable(GL_LIGHTING);  //turn everything back, which we turned on, and turn everything off, which we have turned on.
+	glEnable(GL_LIGHTING);  //enables everything after render pass
 	glEnable(GL_DEPTH_TEST);
-	if (!b1)
-		glDisable(GL_TEXTURE_2D);
 }
 
 GLuint Skybox::loadSkyTexture(const std::string& filename)
 {
 	GLuint num;       //the id for the texture
 
+	//width height and number of components of image
 	int width;
 	int height;
 	int numComponents;
 
-	glGenTextures(1, &num);  //we generate a unique one
-	unsigned char* imageData = stbi_load((filename).c_str(), &width, &height, &numComponents, 4);
+	//unsigned char* imageData = stbi_load((filename).c_str(), &width, &height, &numComponents, 4); //loads image 
+	SDL_Surface * image = SDL_LoadBMP(filename.c_str());
 
-	if (imageData == NULL)
+	if (image == NULL)
 	{
-		std::cerr << "texture load failed" << filename << std::endl;
+		std::cerr << "texture load failed" << filename << SDL_GetError() << std::endl; //if image dtat is null then error message is sent
 	}
 
+	glGenTextures(1, &num);   //generates the texture
+	glBindTexture(GL_TEXTURE_2D, num);      //binds the texture
+	glGenerateMipmap(GL_TEXTURE_2D);	//generates mipmaps
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // wrap texture outside width
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //wrap texture outside height
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);      //texture filterning for minification (texture is smaller than area)
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);      //texture filtering for magnification(texture is larger than area)
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image->w, image->h, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, image->pixels);  //send texture to gpu
 
-	glBindTexture(GL_TEXTURE_2D, num);       //and use the texture, we have just generated
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //if the texture is smaller, than the image, we get the avarege of the pixels next to it
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //same if the image bigger
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);      //we repeat the pixels in the edge of the texture, it will hide that 1px wide line at the edge of the cube, which you have seen in the video
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);      //we do it for vertically and horizontally (previous line)
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, imageData);
+	SDL_FreeSurface(image);
+	//stbi_image_free(image); //deletes image data
 
-	stbi_image_free(imageData);
-
-	return num;     //and we return the id
+	return num;     //return id
 }
 

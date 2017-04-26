@@ -8,13 +8,14 @@ MeshManager::MeshManager()
 
 MeshManager::~MeshManager()
 {
-	glDeleteVertexArrays(1, &VAO);
+	glDeleteVertexArrays(1, &VAO); //deletes VAO data
 }
 
 void MeshManager::initialise(VertexManager * vertices, unsigned int numVertices, unsigned int * indices, unsigned int numIndices)
 {
-	IndexedModel mod;
+	IndexedModel mod; // new model object
 
+	//loops through the amount of vertices and adds the models vertex data 
 	for (unsigned int i = 0; i < numVertices; i++)
 	{
 		mod.positions.push_back(*vertices[i].GetPosition());
@@ -27,14 +28,14 @@ void MeshManager::initialise(VertexManager * vertices, unsigned int numVertices,
 	for (unsigned int i = 0; i < numIndices; i++)
 		mod.indices.push_back(indices[i]);
 	
-	initialiseModel(mod);
+	initialiseModel(mod); //initialises models
 
 }
 
 void MeshManager::loadModelFromFile(const std::string & filename)
 {
-	IndexedModel mod = OBJModel(filename).ToIndexedModel();
-	initialiseModel(mod);
+	IndexedModel mod = OBJModel(filename).ToIndexedModel(); //model is loaded from file 
+	initialiseModel(mod); //initialses model
 
 }
 
@@ -70,8 +71,8 @@ void MeshManager::initialiseModel(const IndexedModel & model)
 
 void MeshManager::DrawMesh()
 {
-	glBindVertexArray(VAO);
-	glDrawElements(GL_TRIANGLES, drawCount, GL_UNSIGNED_INT,0);
-	glBindVertexArray(0);
+	glBindVertexArray(VAO); //vertex array object is bound
+	glDrawElements(GL_TRIANGLES, drawCount, GL_UNSIGNED_INT,0); //all polys are drawn 
+	glBindVertexArray(0); //unbinds vertex array
 
 }

@@ -5,30 +5,31 @@
 #include "stb_image.h"
 #include <cassert>
 #include <iostream>
+#include "TextureManager.h"
 
 
 class Skybox
 {
 public:
-	Skybox();
-	~Skybox();
+	Skybox(); //const
+	~Skybox(); //dest
 
-	void initialiseSkybox();
-	void drawSky(float size);
-	GLuint loadSkyTexture(const std::string& filename);
+	void initialiseSkybox(); //initiales skyboxs
+	void drawSky(float size); //draws skybox vertices and textures
+	GLuint loadSkyTexture(const std::string& filename); //loads sky texture
 
 private:
-	GLuint textureHandler;
-	GLuint skybox[6];
+	GLuint textureHandler; //handler for texture
+	GLuint skybox[6]; //handler for skybox textures array
 	enum 
 	{
-		LEFT = 0,
+		LEFT,
 		RIGHT,
 		UP,
 		DOWN,
 		BACK,
 		FORWARD
-	};
+	}; //enums for textures
 
 };
 

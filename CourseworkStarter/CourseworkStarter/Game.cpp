@@ -1,24 +1,23 @@
-#include "Game.h"
+#include "Game.h"	//includes class header and libraries
 #include <iostream>
 #include <string>
 
-unsigned int inds[] = { 0, 1, 2 };
 Transform trans;
 Transform trans2;
 Transform trans3;
 
 //CHANGE 
-string RESOURCE_PATH = "C:\\Users\\Fraser\\Documents\\Uni\\Year3\\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\";
+string RESOURCE_PATH = "C:\\Users\\Fraser\\Documents\\Uni\\Year3\\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\"; // path for resource directory
 
 Game::Game()
 {
-	gameState = State::PLAY;
-	Window* gameDisp = new Window();
+	gameState = State::PLAY;	//state is set to play
+	Window* gameDisp = new Window();	//new gameDisplay is defined 
 
-	MeshManager* mesh1();
+	//all mesh, skybox and camera points to default contructor
+	MeshManager* mesh1();	
 	MeshManager* mesh2();
 	MeshManager* mesh3();
-
 
 	Skybox* sky();
 
@@ -34,19 +33,21 @@ Game::~Game()
 
 void Game::RunGame()
 {
-	initialiseSystems();
-	gLoop();
+	initialiseSystems(); //initialises all data
+	gLoop();	//starts game loop
 
 }
 
 void Game::initialiseSystems()
 {
-	gameDisplay.initialiseDisplay();
+	gameDisplay.initialiseDisplay();	//game display is set
 
+	//all models are loaded
 	mesh1.loadModelFromFile(RESOURCE_PATH + "Barrel_01.obj");
 	mesh2.loadModelFromFile(RESOURCE_PATH + "Hatchet.obj");
 	mesh3.loadModelFromFile(RESOURCE_PATH + "bear.obj");
 
+	//all transforms are set
 	trans.SetPos(glm::vec3(0, 0.0, 0.0));
 	trans.SetRot(glm::vec3(0.0, 0, 0));
 	trans.SetScale(glm::vec3(1.5, 1.5, 1.5));
@@ -59,27 +60,28 @@ void Game::initialiseSystems()
 	trans3.SetRot(glm::vec3(0.0, 4, 0));
 	trans3.SetScale(glm::vec3(0.75, 0.75, 0.75));
 
-
-	//sky.initialiseSkybox();
-
+	//camera is initialised and created
 	cam.initialiseCamera(glm::vec3(5, 0, -40), 70.0f, 
 		(float)gameDisplay.GetWidth() / gameDisplay.GetHeight(), 0.01f, 1000.0);
 
+	//sky.initialiseSkybox();
 
+	
 }
 
 void Game::updateInput()
 {
-	SDL_Event sdlEvent;
+	SDL_Event sdlEvent; //new event object
 
-	while (SDL_PollEvent(&sdlEvent))
+	while (SDL_PollEvent(&sdlEvent)) //while events are being queued
 	{
-		switch (sdlEvent.type)
+		switch (sdlEvent.type) //switch dependant on the type of event
 		{
 		case SDL_QUIT:
-			gameState = State::EXIT;
+			gameState = State::EXIT; //gamestate is changed when sdl is quit
 			break;
 
+			//key press
 		case SDL_KEYDOWN:
 			switch (sdlEvent.key.keysym.sym)
 			{
@@ -97,6 +99,23 @@ void Game::updateInput()
 				cam.MoveLeft(1);
 				break;
 
+				//object rotation
+			case SDLK_UP:
+				trans.Rotate(vec3(0.1, 0, 0));
+				break;
+
+			case SDLK_DOWN:
+				trans.Rotate(-vec3(0.1, 0, 0));
+				break;
+
+			case SDLK_LEFT:
+				trans.Rotate(-vec3(0, 0.1, 0));
+				break;
+			case SDLK_RIGHT:
+				trans.Rotate(vec3(0, 0.1, 0));
+				break;
+
+				//exit if escape
 			case SDLK_ESCAPE:
 				gameState = State::EXIT;
 				break;
@@ -104,68 +123,65 @@ void Game::updateInput()
 
 			}
 		}
-		cam.MoveMouse();
+		cam.MoveMouse(); //move cam by mouse
 	}
 }
 
 void Game::gLoop()
 {
-	while (gameState != State::EXIT)
+	while (gameState != State::EXIT) //while the state is not exit
 	{
-		updateInput();
-		cam.Update(gameDisplay.GetWidth(),gameDisplay.GetHeight());
-		draw();
+		updateInput();	//input is updated
+		cam.Update(gameDisplay.GetWidth(),gameDisplay.GetHeight());	//camera is updated
+		draw();	//renders screen
 	}
 }
 
 void Game::draw()
 {
-	gameDisplay.ClearDisplay(0.5f,0.5f,0.5f,1.0f);
+	gameDisplay.ClearDisplay(0.5f,0.5f,0.5f,1.0f); //clear display colour is set to grey
 
 
 	ShaderManager shader1(RESOURCE_PATH + "shaderLight"); //shader obj
-	TextureManager texture1(RESOURCE_PATH + "metal.png");
+	TextureManager texture1(RESOURCE_PATH + "metal.png");	//texture object
 
-	texture1.BindTexture(0);
+	texture1.BindTexture(0);//binds texture
 	shader1.BindShader();//bind shader
-	shader1.Update(trans,cam);
+	shader1.UpdateShader(trans,cam);
 
 
 	mesh1.DrawMesh();//draws mesh
 
 	ShaderManager shader2(RESOURCE_PATH + "shaderLight"); //shader obj
-	TextureManager texture2(RESOURCE_PATH + "metal2.png");
+	TextureManager texture2(RESOURCE_PATH + "metal2.png");//texture object
 
 	texture2.BindTexture(1);
 	shader2.BindShader();
-	shader2.Update(trans2, cam);
+	shader2.UpdateShader(trans2, cam);
 
 
 	mesh2.DrawMesh();
 
 	ShaderManager shader3(RESOURCE_PATH + "shaderLight"); //shader obj
-	TextureManager texture3(RESOURCE_PATH + "metal2.png");
+	TextureManager texture3(RESOURCE_PATH + "metal2.png");//texture object
 
 	
 	texture3.BindTexture(2);
 	shader3.BindShader();
-	shader3.Update(trans3, cam);
+	shader3.UpdateShader(trans3, cam);
 
 
 	mesh3.DrawMesh();
 
-	//sky.drawSky(100);
-
-
-
+	//sky.drawSky(50);
 	count = count + 0.01f;
 
-	glEnableClientState(GL_COLOR_ARRAY);
-	glEnd();
+	glEnableClientState(GL_COLOR_ARRAY); //sets colour states
+	glEnd(); //opengl render pass ends
 
 
 	
-	gameDisplay.swapBuffer();
+	gameDisplay.SwapBuffer(); //buffers are swapped to game display
 
 }
 

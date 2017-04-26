@@ -6,15 +6,16 @@
 
 TextureManager::TextureManager(const std::string& fileName)
 {
+	//width height and number of components of image
 	int width;
 	int height;
 	int numComponents;
 
-	unsigned char* imageData = stbi_load((fileName).c_str(), &width, &height, &numComponents, 4);
+	unsigned char* imageDat = stbi_load((fileName).c_str(), &width, &height, &numComponents, 4); //loads image from file
 
-	if (imageData == NULL)
+	if (imageDat == NULL)
 	{
-		std::cerr << "texture load failed" << fileName << std::endl;
+		std::cerr << "texture load failed" << fileName << std::endl; //if image data is null then prompts erros
 	}
 
 	glGenTextures(1, &texHandler); //number of and address of texture
@@ -25,11 +26,11 @@ TextureManager::TextureManager(const std::string& fileName)
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //texture filterning for minification (texture is smaller than area)
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //texture filtering for magnification(texture is larger than area)
 
-																	  //send texture to gpu
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageDat);	//send texture to gpu
+
 
 	//delete data from cpu
-	stbi_image_free(imageData);
+	stbi_image_free(imageDat);
 
 
 }
