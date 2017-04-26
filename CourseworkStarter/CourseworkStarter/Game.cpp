@@ -123,7 +123,7 @@ void Game::draw()
 	gameDisplay.ClearDisplay(0.5f,0.5f,0.5f,1.0f);
 
 
-	ShaderManager shader1(RESOURCE_PATH + "shader"); //shader obj
+	ShaderManager shader1(RESOURCE_PATH + "shaderLight"); //shader obj
 	TextureManager texture1(RESOURCE_PATH + "metal.png");
 
 	texture1.BindTexture(0);
@@ -133,7 +133,7 @@ void Game::draw()
 
 	mesh1.DrawMesh();//draws mesh
 
-	ShaderManager shader2(RESOURCE_PATH + "shader"); //shader obj
+	ShaderManager shader2(RESOURCE_PATH + "shaderLight"); //shader obj
 	TextureManager texture2(RESOURCE_PATH + "metal2.png");
 
 	texture2.BindTexture(1);
@@ -143,7 +143,7 @@ void Game::draw()
 
 	mesh2.DrawMesh();
 
-	ShaderManager shader3(RESOURCE_PATH + "shader"); //shader obj
+	ShaderManager shader3(RESOURCE_PATH + "shaderLight"); //shader obj
 	TextureManager texture3(RESOURCE_PATH + "metal2.png");
 
 	

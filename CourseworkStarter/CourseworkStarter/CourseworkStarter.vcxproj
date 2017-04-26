@@ -151,7 +151,6 @@
   <ItemGroup>
     <ClCompile Include="obj_loader.cpp" />
     <ClCompile Include="Skybox.cpp" />
-    <ClCompile Include="View.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
@@ -173,8 +172,10 @@
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\res\shader.frag" />
-    <None Include="..\res\shader.vert" />
+    <None Include="..\res\shaderBasic.frag" />
+    <None Include="..\res\shaderBasic.vert" />
+    <None Include="..\res\shaderLight.frag" />
+    <None Include="..\res\shaderLight.vert" />
     <None Include="..\res\skybox.frag" />
     <None Include="..\res\skybox.vert" />
   </ItemGroup>

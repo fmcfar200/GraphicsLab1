@@ -24,7 +24,7 @@ ShaderManager::ShaderManager(const std::string & filename)
 	CheckShaderError(shaderProg, GL_VALIDATE_STATUS, true, "Error: Shader program is not valid");
 	
 	uniforms[TRANSFORM_UNIF] = glGetUniformLocation(shaderProg, "trans");
-
+	uniforms[CAMDIRECTION_UNIF] = glGetUniformLocation(shaderProg, "camDirection");
 }
 
 ShaderManager::~ShaderManager()
@@ -116,7 +116,7 @@ void ShaderManager::Update(const Transform & trans, const View & camera)
 {
 	glm::mat4 modelMat = camera.GetViewProjectionMatrix() * trans.GetModel();
 	glUniformMatrix4fv(uniforms[TRANSFORM_UNIF], 1, GLU_FALSE, &modelMat[0][0]);
-
+	glUniform3f(uniforms[CAMDIRECTION_UNIF], camera.forward.x, camera.forward.y, camera.forward.z);
 }
 
 

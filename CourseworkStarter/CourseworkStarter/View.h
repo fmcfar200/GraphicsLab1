@@ -58,7 +58,7 @@ public:
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
 
-		camSpeed = 0.5f * deltaTime;
+		camSpeed = 1.0f * deltaTime;
 
 		int xPos, yPos;
 		SDL_GetGlobalMouseState(&xPos,&yPos);
@@ -92,13 +92,14 @@ public:
 		forward = normalize(front);
 
 		
-		
 	}
+
+	glm::vec3 forward;
+
 
 private:
 	glm::mat4 projectionMat;
 	glm::vec3 position;
-	glm::vec3 forward;
 	glm::vec3 up;
 
 

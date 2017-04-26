@@ -26,6 +26,7 @@ private:
 	enum
 	{
 		TRANSFORM_UNIF,
+		CAMDIRECTION_UNIF,
 
 		NUM_OF_UNIFORMS
 	};

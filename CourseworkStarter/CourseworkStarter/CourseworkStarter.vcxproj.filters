@@ -42,9 +42,6 @@
     <ClCompile Include="Skybox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="View.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -79,9 +76,11 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\res\shader.frag" />
-    <None Include="..\res\shader.vert" />
     <None Include="..\res\skybox.frag" />
     <None Include="..\res\skybox.vert" />
+    <None Include="..\res\shaderLight.frag" />
+    <None Include="..\res\shaderLight.vert" />
+    <None Include="..\res\shaderBasic.frag" />
+    <None Include="..\res\shaderBasic.vert" />
   </ItemGroup>
 </Project>

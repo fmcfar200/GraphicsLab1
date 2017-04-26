@@ -19,7 +19,7 @@ TextureManager::TextureManager(const std::string& fileName)
 
 	glGenTextures(1, &texHandler); //number of and address of texture
 	glBindTexture(GL_TEXTURE_2D, texHandler); //bind texture, define type and specify the texture we are working on
-
+	glGenerateMipmap(GL_TEXTURE_2D);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); // wrap texture outside width
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT); //wrap texture outside height
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //texture filterning for minification (texture is smaller than area)
