@@ -20,7 +20,7 @@ public:
 
 private:
 	GLuint textureHandler; //handler for texture
-	GLuint skybox[6]; //handler for skybox textures array
+	GLuint skybox[6]; //handler for skybox textures -array-
 	enum 
 	{
 		LEFT,

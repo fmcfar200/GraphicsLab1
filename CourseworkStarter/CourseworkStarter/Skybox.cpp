@@ -13,12 +13,13 @@ Skybox::~Skybox()
 void Skybox::initialiseSkybox()
 {
 	//loads all textures to skybox 
-	skybox[LEFT] = loadSkyTexture("C:\\Users\\Fraser\\Documents\\Uni\\Year3\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\left.bmp");
-	skybox[BACK] = loadSkyTexture("C:\\Users\\Fraser\\Documents\\Uni\\Year3\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\back.bmp");
-	skybox[RIGHT] = loadSkyTexture("C:\\Users\\Fraser\\Documents\\Uni\\Year3\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\right.bmp");
-	skybox[FORWARD] = loadSkyTexture("C:\\Users\\Fraser\\Documents\\Uni\\Year3\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\front.bmp");
-	skybox[UP] = loadSkyTexture("C:\\Users\\Fraser\\Documents\\Uni\\Year3\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\top.bmp");
-	skybox[DOWN] = loadSkyTexture("C:\\Users\\Fraser\\Documents\\Uni\\Year3\B\\Graphics\\GraphicsLabs\\CourseworkStarter\\res\\bottom.bmp");
+	skybox[LEFT] = loadSkyTexture("C:/Users/Fraser/Documents/Uni/Year3/B/Graphics/GraphicsLabs/CourseworkStarter/res/left.bmp");
+	skybox[BACK] = loadSkyTexture("C:/Users/Fraser/Documents/Uni/Year3/B/Graphics/GraphicsLabs/CourseworkStarter/res/back.bmp");
+	skybox[RIGHT] = loadSkyTexture("C:/Users/Fraser/Documents/Uni/Year3/B/Graphics/GraphicsLabs/CourseworkStarter/res/right.bmp");
+	skybox[FORWARD] = loadSkyTexture("C:/Users/Fraser/Documents/Uni/Year3/B/Graphics/GraphicsLabs/CourseworkStarter/res/front.bmp");
+	skybox[UP] = loadSkyTexture("C:/Users/Fraser/Documents/Uni/Year3/B/Graphics/GraphicsLabs/CourseworkStarter/res/top.bmp");
+	skybox[DOWN] = loadSkyTexture("C:/Users/Fraser/Documents/Uni/Year3/B/Graphics/GraphicsLabs/CourseworkStarter/res/bottom.bmp");
+	
 }
 
 void Skybox::drawSky(float size)
@@ -103,7 +104,7 @@ void Skybox::drawSky(float size)
 
 GLuint Skybox::loadSkyTexture(const std::string& filename)
 {
-	GLuint num;       //the id for the texture
+	GLuint num = 0;       //the id for the texture
 
 	//width height and number of components of image
 	int width;

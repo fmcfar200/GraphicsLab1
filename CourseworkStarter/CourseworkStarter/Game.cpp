@@ -56,7 +56,7 @@ void Game::initialiseSystems()
 	trans2.SetRot(glm::vec3(0.0, 0, 0));
 	trans2.SetScale(glm::vec3(1, 1, 1));
 
-	trans3.SetPos(glm::vec3(-10.0f, 0.0f, 0.0f));
+	trans3.SetPos(glm::vec3(-15.0f, 0.0f, 0.0f));
 	trans3.SetRot(glm::vec3(0.0, 4, 0));
 	trans3.SetScale(glm::vec3(0.75, 0.75, 0.75));
 
@@ -81,6 +81,11 @@ void Game::updateInput()
 			gameState = State::EXIT; //gamestate is changed when sdl is quit
 			break;
 
+		case SDL_MOUSEMOTION:
+			cam.MoveMouse();
+			break;
+
+
 			//key press
 		case SDL_KEYDOWN:
 			switch (sdlEvent.key.keysym.sym)
@@ -98,6 +103,7 @@ void Game::updateInput()
 			case SDLK_a:
 				cam.MoveLeft(1);
 				break;
+			
 
 				//object rotation
 			case SDLK_UP:
@@ -123,7 +129,7 @@ void Game::updateInput()
 
 			}
 		}
-		cam.MoveMouse(); //move cam by mouse
+		 //move cam by mouse
 	}
 }
 
@@ -145,19 +151,21 @@ void Game::draw()
 	ShaderManager shader1(RESOURCE_PATH + "shaderLight"); //shader obj
 	TextureManager texture1(RESOURCE_PATH + "metal.png");	//texture object
 
-	texture1.BindTexture(0);//binds texture
 	shader1.BindShader();//bind shader
 	shader1.UpdateShader(trans,cam);
+	texture1.BindTexture(0);//binds texture
+
 
 
 	mesh1.DrawMesh();//draws mesh
 
 	ShaderManager shader2(RESOURCE_PATH + "shaderLight"); //shader obj
-	TextureManager texture2(RESOURCE_PATH + "metal2.png");//texture object
+	TextureManager texture2(RESOURCE_PATH + "Wood.jpg");//texture object
 
-	texture2.BindTexture(1);
 	shader2.BindShader();
 	shader2.UpdateShader(trans2, cam);
+	texture2.BindTexture(0);
+
 
 
 	mesh2.DrawMesh();
@@ -166,14 +174,15 @@ void Game::draw()
 	TextureManager texture3(RESOURCE_PATH + "metal2.png");//texture object
 
 	
-	texture3.BindTexture(2);
 	shader3.BindShader();
 	shader3.UpdateShader(trans3, cam);
+	texture3.BindTexture(0);
 
 
 	mesh3.DrawMesh();
 
-	//sky.drawSky(50);
+	//sky.drawSky(25);
+
 	count = count + 0.01f;
 
 	glEnableClientState(GL_COLOR_ARRAY); //sets colour states
