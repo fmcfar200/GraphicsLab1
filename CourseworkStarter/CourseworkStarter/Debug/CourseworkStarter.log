@@ -1,2 +1,25 @@
-﻿  CourseworkStarter.vcxproj -> C:\Users\Fraser\Documents\Uni\Year3\B\Graphics\GraphicsLabs\CourseworkStarter\Debug\CourseworkStarter.exe
-  CourseworkStarter.vcxproj -> C:\Users\Fraser\Documents\Uni\Year3\B\Graphics\GraphicsLabs\CourseworkStarter\Debug\CourseworkStarter.pdb (Full PDB)
+﻿  TextureManager.cpp
+  ShaderManager.cpp
+c:\users\fraser\documents\github\graphicslab1\courseworkstarter\courseworkstarter\view.h(57): warning C4244: 'initializing': conversion from 'Uint32' to 'GLfloat', possible loss of data
+c:\users\fraser\documents\github\graphicslab1\courseworkstarter\courseworkstarter\view.h(68): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\fraser\documents\github\graphicslab1\courseworkstarter\courseworkstarter\view.h(69): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  MeshManager.cpp
+  main.cpp
+c:\users\fraser\documents\github\graphicslab1\courseworkstarter\courseworkstarter\view.h(57): warning C4244: 'initializing': conversion from 'Uint32' to 'GLfloat', possible loss of data
+c:\users\fraser\documents\github\graphicslab1\courseworkstarter\courseworkstarter\view.h(68): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\fraser\documents\github\graphicslab1\courseworkstarter\courseworkstarter\view.h(69): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Game.cpp
+c:\users\fraser\documents\github\graphicslab1\courseworkstarter\courseworkstarter\view.h(57): warning C4244: 'initializing': conversion from 'Uint32' to 'GLfloat', possible loss of data
+c:\users\fraser\documents\github\graphicslab1\courseworkstarter\courseworkstarter\view.h(68): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\fraser\documents\github\graphicslab1\courseworkstarter\courseworkstarter\view.h(69): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Window.cpp
+  Skybox.cpp
+c:\users\fraser\documents\github\graphicslab1\courseworkstarter\courseworkstarter\skybox.cpp(111): warning C4101: 'height': unreferenced local variable
+c:\users\fraser\documents\github\graphicslab1\courseworkstarter\courseworkstarter\skybox.cpp(110): warning C4101: 'width': unreferenced local variable
+c:\users\fraser\documents\github\graphicslab1\courseworkstarter\courseworkstarter\skybox.cpp(112): warning C4101: 'numComponents': unreferenced local variable
+  obj_loader.cpp
+c:\users\fraser\documents\github\graphicslab1\courseworkstarter\courseworkstarter\obj_loader.cpp(378): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+  stb_image.c
+  CourseworkStarter.vcxproj -> C:\Users\Fraser\Documents\GitHub\GraphicsLab1\CourseworkStarter\Debug\CourseworkStarter.exe
+  CourseworkStarter.vcxproj -> C:\Users\Fraser\Documents\GitHub\GraphicsLab1\CourseworkStarter\Debug\CourseworkStarter.pdb (Full PDB)
